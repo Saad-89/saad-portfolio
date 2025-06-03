@@ -1,0 +1,733 @@
+
+.experienceSection {
+  width: 100%;
+  background-color: #F6F2EF; /* off-white background */
+  min-height: 100vh;
+   padding: 2rem 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.experienceSection.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Section Title Styles */
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.decorativeLine {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #000000, transparent);
+  border-radius: 1px;
+  margin: 0 auto 24px;
+}
+
+.mainTitle {
+  font-size: 48px;
+  font-weight: 200;
+  color: #000000;
+  font-family: var(--font-primary);
+  letter-spacing: 8px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: var(--font-primary);
+  letter-spacing: 1.5px;
+  margin: 0 0 32px;
+   text-align: center;
+}
+
+.decorativeElements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.decorator {
+  width: 40px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.centerDot {
+  width: 8px;
+  height: 8px;
+  background-color: #000000;
+  border-radius: 50%;
+}
+
+/* Timeline Styles */
+.timeline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Experience Card Styles */
+.experienceCard {
+  width: 100%;
+  max-width: 80%; /* Reduced from full width */
+  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); /* White to light blue gradient */
+  border-radius: 24px;
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 5px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(80px) scale(0.8);
+  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin: 0 auto; /* Center the card */
+}
+
+.experienceCard.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.experienceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 248, 255, 0.6));
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+/* Accent Line */
+.accentLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #000000, #808080, #000000);
+  border-radius: 24px 0 0 24px;
+}
+
+.cardContent {
+  padding: 30px; /* Reduced from 40px */
+  position: relative;
+  z-index: 1;
+}
+
+/* Desktop Content Styles */
+.desktopContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.leftSide {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logoContainer {
+  width: 80px;
+  height: 80px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  border: 2px solid rgba(128, 128, 128, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.companyLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.defaultLogo {
+  width: 100%;
+  height: 100%;
+  display: none; /* Hidden by default, shown when image fails */
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000000, #555555);
+  border-radius: 16px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+}
+
+
+.duration {
+  padding: 8px 16px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.jobType {
+  padding: 6px 14px;
+  background-color: rgba(128, 128, 128, 0.1);
+  border: 1.5px solid rgba(128, 128, 128, 0.3);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #666666;
+  font-family: var(--font-primary);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.jobType.current {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #000000;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666666;
+  font-family: var(--font-primary);
+}
+
+.locationIcon {
+  width: 16px;
+  height: 16px;
+  color: #666666;
+}
+
+.rightSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.jobHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.jobTitleContainer {
+  flex: 1;
+}
+
+.position {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  font-family: var(--font-primary);
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.company {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4a4a4a;
+  font-family: var(--font-primary);
+  margin: 0;
+}
+
+.currentBadge {
+  padding: 8px 16px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background-color: #000000;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  color: #4a4a4a;
+  font-family: var(--font-primary);
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+  margin: 0 0 32px;
+}
+
+.responsibilitiesSection {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+  font-family: var(--font-primary);
+  letter-spacing: 1.5px;
+  margin: 0 0 20px;
+  text-align: left; /* Explicitly set to left */
+}
+
+.responsibilitiesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.responsibilityItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #4a4a4a;
+  font-family: var(--font-primary);
+  line-height: 1.6;
+}
+
+.bullet {
+  width: 6px;
+  height: 6px;
+  background-color: #000000;
+  border-radius: 50%;
+  margin: 8px 16px 0 0;
+  flex-shrink: 0;
+}
+
+.technologiesSection {
+  margin: 0;
+}
+
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.techTag {
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+  border: 1px solid #d4d4d4;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  font-family: var(--font-primary);
+}
+
+/* Mobile Styles */
+.mobileContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mobileHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.mobileLogoContainer {
+  width: 60px;
+  height: 60px;
+  background-color: #f5f5f5;
+  border-radius: 16px;
+  border: 2px solid rgba(128, 128, 128, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mobileCompanyLogo {
+  width: 100%;
+  height: 100%;
+  
+  /* Continuation from .mobileCompanyLogo */
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.mobileDefaultLogo {
+  width: 100%;
+  height: 100%;
+  display: none; /* Hidden by default, shown when image fails */
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000000, #555555);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+}
+
+
+.mobileTitleContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobilePosition {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+  font-family: var(--font-primary);
+  line-height: 1.2;
+  margin: 0 0 4px;
+}
+
+.mobileCompany {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a4a4a;
+  font-family: var(--font-primary);
+  margin: 0;
+}
+
+.mobileCurrentBadge {
+  padding: 6px 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  letter-spacing: 1px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  align-self: flex-start;
+}
+
+.mobileMetadata {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.mobileDuration {
+  padding: 6px 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  letter-spacing: 0.5px;
+}
+
+.mobileJobType {
+  padding: 5px 12px;
+  background-color: rgba(128, 128, 128, 0.1);
+  border: 1.5px solid rgba(128, 128, 128, 0.3);
+  border-radius: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #666666;
+  font-family: var(--font-primary);
+  letter-spacing: 1px;
+}
+
+.mobileLocation {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666666;
+  font-family: var(--font-primary);
+  margin-bottom: 20px;
+}
+
+.mobileLocationIcon {
+  width: 14px;
+  height: 14px;
+  color: #666666;
+}
+
+.mobileDivider {
+  width: 40px;
+  height: 2px;
+  background-color: #000000;
+  margin-bottom: 20px;
+}
+
+.mobileDescription {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4a4a4a;
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  margin: 0 0 24px;
+}
+
+.mobileResponsibilitiesSection {
+  margin-bottom: 24px;
+}
+
+.mobileSectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+  font-family: var(--font-primary);
+  letter-spacing: 1.5px;
+  margin: 0 0 16px;
+  text-align: left; /* Explicitly set to left */
+}
+.mobileResponsibilitiesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileResponsibilityItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #4a4a4a;
+  font-family: var(--font-primary);
+  line-height: 1.5;
+}
+
+.mobileBullet {
+  width: 5px;
+  height: 5px;
+  background-color: #000000;
+  border-radius: 50%;
+  margin: 6px 12px 0 0;
+  flex-shrink: 0;
+}
+
+.mobileTechnologiesSection {
+  margin: 0;
+}
+
+.mobileTechTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.mobileTechTag {
+  padding: 6px 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #d4d4d4;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #000000;
+  font-family: var(--font-primary);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .experienceSection {
+    padding: 80px 48px;
+  }
+  
+  .mainTitle {
+    font-size: 42px;
+    letter-spacing: 6px;
+  }
+  
+  .desktopContent {
+    gap: 32px;
+  }
+  
+  .leftSide {
+    width: 240px;
+  }
+}
+
+@media (max-width: 992px) {
+  .experienceSection {
+    padding: 64px 32px;
+  }
+  
+  .sectionTitle {
+    margin-bottom: 80px;
+  }
+  
+  .mainTitle {
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+  
+  .timeline {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardContent {
+    padding: 20px; /* Reduced mobile padding */
+  }
+  
+  .experienceCard {
+    max-width: 100%; /* Full width on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .cardContent {
+    padding: 16px; /* Further reduced for small screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .experienceSection {
+    padding: 48px 24px;
+    min-height: auto;
+  }
+  
+  .sectionTitle {
+    margin-bottom: 60px;
+  }
+  
+  .mainTitle {
+    font-size: 32px;
+    letter-spacing: 3px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+  }
+  
+  .timeline {
+    gap: 40px;
+  }
+  
+  .cardContent {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .experienceSection {
+    padding: 40px 16px;
+  }
+  
+  .sectionTitle {
+    margin-bottom: 48px;
+  }
+  
+  .mainTitle {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  
+  .decorativeLine {
+    width: 80px;
+  }
+  
+  .timeline {
+    gap: 32px;
+  }
+  
+  .cardContent {
+    padding: 20px;
+  }
+}
+
+/* Animation Enhancements */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.experienceCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: linear-gradient(135deg, #ffffff 0%, #e6f3ff 100%); /* Slightly deeper blue on hover */
+}
+
+/* Print Styles */
+@media print {
+  .experienceSection {
+    background-color: white;
+    box-shadow: none;
+    padding: 20px 0;
+  }
+  
+  .experienceCard {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  
+  .accentLine {
+    background: #000000;
+  }
+}

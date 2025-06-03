@@ -1,0 +1,447 @@
+/* Dialog Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  padding: 16px;
+}
+
+.overlay.visible {
+  opacity: 1;
+}
+
+.overlay.closing {
+  opacity: 0;
+}
+
+/* Dialog Container */
+.dialogContainer {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  max-height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.8);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dialogContainer.visible {
+  transform: scale(1);
+}
+
+.dialogContainer.closing {
+  transform: scale(0.8);
+}
+
+/* Header */
+.header {
+  background-color: #f8f9fa;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+ 
+   font-family: var(--font-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.closeButton {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-left: 16px;
+}
+
+.closeButton:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.closeIcon {
+  font-size: 24px;
+  color: #666666;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+}
+
+/* Desktop Layout */
+.desktopLayout {
+  display: flex;
+  gap: 32px;
+}
+
+.mobileLayout {
+  display: none;
+}
+
+/* Video Section */
+.videoSection {
+  flex: 3;
+}
+
+.videoContainer {
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+
+.videoThumbnail {
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.4)
+  );
+}
+
+.videoPlayButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.videoPlayButton:hover {
+  background-color: #ffffff;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.playIcon {
+  font-size: 40px;
+  color: #000000;
+  margin-left: 4px;
+}
+
+.videoLabel {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+   font-family: var(--font-primary);
+  border-radius: 6px;
+}
+
+/* Details Section */
+.detailsSection {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+ font-family: var(--font-primary);
+  margin: 0;
+}
+
+/* Technologies */
+.technologiesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.techBadge {
+  padding: 6px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666666;
+ font-family: var(--font-primary);
+}
+
+/* Info Grid */
+.infoGrid {
+  display: flex;
+  gap: 16px;
+}
+
+.infoItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999999;
+ font-family: var(--font-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+   font-family: var(--font-primary);
+}
+
+/* Description */
+.description {
+  line-height: 1.6;
+}
+
+.paragraph {
+  font-size: 14px;
+  color: #666666;
+   font-family: var(--font-primary);
+  margin: 0 0 12px 0;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.bold {
+  font-weight: 600;
+  color: #000000;
+}
+
+.list {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.listItem {
+  font-size: 14px;
+  color: #666666;
+   font-family: var(--font-primary);
+  margin-bottom: 4px;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .dialogContainer {
+    max-width: 85vw;
+  }
+  
+  .content {
+    padding: 24px;
+  }
+  
+  .desktopLayout {
+    gap: 24px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 12px;
+  }
+  
+  .dialogContainer {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .header {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .closeButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .closeIcon {
+    font-size: 20px;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .desktopLayout {
+    display: none;
+  }
+  
+  .mobileLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .videoContainer {
+    height: 200px;
+  }
+  
+  .videoPlayButton {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .playIcon {
+    font-size: 30px;
+  }
+  
+  .detailsSection {
+    gap: 20px;
+  }
+  
+  .infoGrid {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .technologiesGrid {
+    gap: 6px;
+  }
+  
+  .techBadge {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  .overlay {
+    padding: 8px;
+  }
+  
+  .header {
+    padding: 12px;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .videoContainer {
+    height: 180px;
+  }
+  
+  .videoPlayButton {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .playIcon {
+    font-size: 24px;
+  }
+  
+  .sectionTitle {
+    font-size: 14px;
+  }
+  
+  .paragraph {
+    font-size: 13px;
+  }
+  
+  .listItem {
+    font-size: 13px;
+  }
+}
+
+/* Scrollbar Styling */
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Focus States */
+.closeButton:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+.videoPlayButton:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}

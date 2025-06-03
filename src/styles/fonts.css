@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'GGSans';
+  src: url('/fonts/gg-sans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GGSans';
+  src: url('/fonts/gg-sans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Add more weights if you have them */
+@font-face {
+  font-family: 'GGSans';
+  src: url('/fonts/gg-sans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GGSans';
+  src: url('/fonts/gg-sans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

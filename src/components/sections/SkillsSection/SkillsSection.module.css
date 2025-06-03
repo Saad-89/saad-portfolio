@@ -1,0 +1,360 @@
+/* src/components/sections/SkillsSection/SkillsSection.module.css */
+
+.skillsSection {
+  width: 100%;
+  /* background: linear-gradient(
+    to bottom,
+    #ffffff,
+    #fafafa
+  ); */
+  
+  transition: all 1000ms ease-out;
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.skillsSection.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+/* Section Header Styles */
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+.decorativeLine {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #000000,
+    transparent
+  );
+  border-radius: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-weight: 200;
+  color: #000000;
+  letter-spacing: 8px;
+  line-height: 1.2;
+  margin: 0 0 0.75rem 0;
+  text-align: center;
+}
+
+.sectionSubtitle {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 1.5px;
+  margin: 0 0 2rem 0;
+  text-align: center;
+  max-width: 600px;
+}
+
+.decorativeElements {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.decorator {
+  width: 40px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.decorativeDot {
+  width: 8px;
+  height: 8px;
+  background-color: #000000;
+  border-radius: 50%;
+}
+
+/* Skills Grid */
+.skillsGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  
+}
+
+/* Skill Card - Square Shape */
+.skillCard {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 300ms ease;
+  transform: scale(0) translateY(30px);
+  opacity: 0;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 2px 5px rgba(0, 0, 0, 0.05);
+  /* Make cards square */
+  aspect-ratio: 1;
+  min-height: 200px;
+}
+
+.skillCard.animated {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  animation: cardSlideIn 600ms ease-out forwards;
+}
+
+.skillCard:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Logo Container */
+.logoContainer {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+.skillIcon {
+  object-fit: contain;
+}
+
+.fallbackIcon {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9),
+    #e5e7eb
+  );
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+/* Skill Text */
+.skillName {
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.625rem 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skillLevel {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+/* Animations */
+@keyframes cardSlideIn {
+  0% {
+    transform: scale(0) translateY(30px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 767px) {
+  .skillsSection {
+    padding: 2rem 1.5rem !important;
+  }
+
+  .sectionHeader {
+    margin-bottom: 3rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.25rem !important;
+    letter-spacing: 4px;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.875rem !important;
+    letter-spacing: 1px;
+    padding: 0 1rem;
+  }
+
+  .skillsGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .skillCard {
+    padding: 1.25rem;
+    min-height: 160px;
+    aspect-ratio: 1;
+  }
+
+  .logoContainer {
+    width: 50px !important;
+    height: 50px !important;
+    margin-bottom: 1rem;
+  }
+
+  .skillName {
+    font-size: 0.875rem !important;
+  }
+
+  .skillLevel {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Tablet Responsive Styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .skillsGrid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.125rem !important;
+  }
+  
+  .skillCard {
+    min-height: 180px;
+    aspect-ratio: 1;
+  }
+}
+
+/* Desktop Styles - Always 4 columns */
+@media (min-width: 1024px) {
+  .skillsGrid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1.25rem !important;
+  }
+  
+  .skillCard {
+    min-height: 220px;
+    aspect-ratio: 1;
+  }
+}
+
+/* High DPI/Retina Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .skillIcon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  .skillsSection {
+    background: linear-gradient(
+      to bottom,
+      #1a1a1a,
+      #0f0f0f
+    );
+  }
+
+  .sectionTitle {
+    color: #ffffff;
+  }
+
+  .sectionSubtitle {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .decorativeLine {
+    background: linear-gradient(
+      to right,
+      transparent,
+      #ffffff,
+      transparent
+    );
+  }
+
+  .decorativeDot {
+    background-color: #ffffff;
+  }
+
+  .decorator {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .skillCard {
+    background: linear-gradient(
+      135deg,
+      #2a2a2a,
+      #2a2a2a
+    );
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .skillCard:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .logoContainer {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .skillName {
+    color: #ffffff;
+  }
+
+  .skillLevel {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .skillsSection,
+  .skillCard {
+    transition: none;
+    animation: none;
+  }
+
+  .skillCard.animated {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* Focus states for accessibility */
+.skillCard:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}

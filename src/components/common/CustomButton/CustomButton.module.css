@@ -1,0 +1,322 @@
+/* CustomNavBar.module.css */
+
+/* Main Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.navbarScrolled {
+  background-color: rgba(18, 18, 18, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 clamp(16px, 4vw, 64px);
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+/* Logo */
+.logo {
+  /* font-family: 'GG Sans Bold', system-ui, -apple-system, sans-serif; */
+  font-family: var(--font-primary);
+  font-size: clamp(24px, 3vw, 28px);
+  font-weight: 700;
+  color: #121212;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.logoScrolled {
+  color: #ffffff;
+}
+
+/* Desktop Navigation */
+.desktopNavigation {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 32px);
+}
+
+.navItem {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navItemText {
+  font-family: var(--font-primary);
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: 500;
+  color: #666666;
+  transition: all 0.3s ease;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.navItemScrolled {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.navItemTextActive {
+  font-weight: 600;
+  color: #121212;
+}
+
+.navbarScrolled .navItemTextActive {
+  color: #ffffff;
+}
+
+/* Underline Indicator */
+.underlineIndicator {
+  height: 2px;
+  width: 0;
+  background-color: #121212;
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.underlineIndicatorActive {
+  width: 40px;
+}
+
+.underlineIndicatorScrolled {
+  background-color: #ffffff;
+}
+
+/* Mobile Menu */
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 4px;
+  position: relative;
+}
+
+.hamburgerLine {
+  position: absolute;
+  height: 2px;
+  width: 30px;
+  background-color: #121212;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.hamburgerScrolled {
+  background-color: #ffffff;
+}
+
+.hamburgerLine1 {
+  top: 4px;
+}
+
+.hamburgerLine2 {
+  top: 14px;
+}
+
+.hamburgerLine3 {
+  top: 24px;
+}
+
+.mobileMenuOpen .hamburgerLine1 {
+  top: 14px;
+  transform: rotate(45deg);
+}
+
+.mobileMenuOpen .hamburgerLine2 {
+  opacity: 0;
+}
+
+.mobileMenuOpen .hamburgerLine3 {
+  top: 14px;
+  transform: rotate(-45deg);
+}
+
+/* Mobile Overlay */
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Mobile Drawer */
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 75vw;
+  max-width: 300px;
+  background-color: #121212;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1001;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.mobileDrawerOpen {
+  transform: translateX(0);
+}
+
+.drawerContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.3);
+}
+
+.drawerTitle {
+  /* font-family: 'GG Sans Bold', system-ui, -apple-system, sans-serif; */
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.closeButton {
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.closeButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.drawerItems {
+  flex: 1;
+  padding-top: 20px;
+  overflow-y: auto;
+}
+
+.drawerItem {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 0.5px solid rgba(102, 102, 102, 0.2);
+}
+
+.drawerItem:hover,
+.drawerItemActive {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.activeIndicator {
+  width: 4px;
+  height: 20px;
+  background-color: transparent;
+  border-radius: 2px;
+  margin-right: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.activeIndicatorVisible {
+  background-color: #ffffff;
+}
+
+.drawerItemText {
+  /* font-family: 'GG Sans Medium', system-ui, -apple-system, sans-serif; */
+  font-family: var(--font-primary);
+  font-size: 18px;
+  font-weight: 500;
+  color: #cccccc;
+  transition: all 0.3s ease;
+}
+
+.drawerItemActive .drawerItemText {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .desktopNavigation {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobileMenuButton {
+    display: none;
+  }
+}
+
+/* High DPI / Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hamburgerLine,
+  .underlineIndicator,
+  .activeIndicator {
+    transform: translateZ(0);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navItem,
+  .logo,
+  .navItemText,
+  .underlineIndicator,
+  .hamburgerLine,
+  .mobileDrawer,
+  .drawerItem,
+  .activeIndicator,
+  .drawerItemText {
+    transition: none;
+    animation: none;
+  }
+}
