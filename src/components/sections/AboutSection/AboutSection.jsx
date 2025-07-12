@@ -58,15 +58,19 @@ const AboutSection = ({ scrollController }) => {
             <div className={`${styles.textContent} ${styles.slideFromLeft}`}>
               <div className={styles.textWrapper}>
                 <div className={styles.sectionLabel}>About Me</div>
-                <h1 className={styles.name}>Muhammad<br />Ahsan</h1>
-                <p className={styles.introduction}>
-                  Hello, I'm Muhammad Ahsan.<br />
-                  I'm a Flutter developer passionate about creating beautiful cross-platform mobile experiences. 
-                  I specialize in building high-performance apps that work seamlessly on both iOS and Android.
+                <h1 className={styles.name}>Saad Yaqoob</h1>
+                              <p className={styles.introduction}>
+                  Hello, I'm Saad Yaqoob.<br />
+                  I'm a senior mobile and web developer who brings digital ideas to life. With expertise in both 
+                  mobile app development and modern web technologies, I create seamless user experiences that work 
+                  beautifully across all platforms.
                 </p>
                 <p className={styles.skillsBrief}>
-                  My expertise includes Flutter, Dart, Firebase, REST APIs, and state management solutions like Provider and Bloc. 
-                  I've worked with clients ranging from startups to established companies, delivering robust mobile solutions.
+                  Over the years, I've successfully built and launched numerous applications on both Google Play Store 
+                  and Apple App Store using Flutter and React Native. My web development skills span modern frameworks 
+                  and technologies, allowing me to create responsive, fast-loading websites that engage users and drive results. 
+                  I believe in writing clean, maintainable code and always stay updated with the latest industry trends 
+                  to deliver cutting-edge solutions.
                 </p>
                 <div className={styles.socialLinks}>
                   {['Instagram', 'LinkedIn', 'GitHub'].map((platform) => (

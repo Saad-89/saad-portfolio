@@ -263,7 +263,7 @@ const CustomNavBar = ({
             className={`${styles.logo} ${isScrolled ? styles.logoScrolled : ''}`}
             onClick={() => scrollToSection('Hero')}
           >
-            M
+            💻
           </div>
 
           {/* Navigation Items or Hamburger Menu */}

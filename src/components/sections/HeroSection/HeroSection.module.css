@@ -12,7 +12,6 @@
   --padding-xxl: 48px;
 }
 
-
 .heroSection {
   width: 100%;
   height: var(--screen-height);
@@ -22,7 +21,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 40%, #e8e8e8 80%, #d8d8d8 100%);
   overflow: hidden;
-  padding-top: 80px; /* Add this to push content down */
+  padding-top: 80px;
 }
 
 .animatedBackground {
@@ -73,7 +72,7 @@
 .content > * {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .content > *.visible {
@@ -95,7 +94,7 @@
   border: 1px solid rgba(128, 128, 128, 0.2);
   border-radius: 25px;
   font-size: 16px;
-  font-family: var(--font-primary);
+  font-family: var(--primary-font);
   font-weight: 500;
   color: #212121;
   backdrop-filter: blur(10px);
@@ -112,7 +111,7 @@
 .name {
   font-size: 64px;
   font-weight: 800;
-  font-family: var(--font-primary);
+  font-family: var(--primary-font);
   background: linear-gradient(135deg, #000000, #404040);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -120,13 +119,13 @@
   letter-spacing: -2px;
   line-height: 1;
   margin: 0 0 8px 0;
-  transition-delay: 0.3s;
+  transition-delay: 0.15s;
 }
 
 .title {
   margin-bottom: 32px;
-   font-family: var(--font-primary);
-  transition-delay: 0.6s;
+  font-family: var(--primary-font);
+  transition-delay: 0.3s;
 }
 
 .titleBadge {
@@ -136,7 +135,7 @@
   border: 1px solid #d1d5db;
   border-radius: 30px;
   font-size: 26px;
-  font-family: var(--font-primary);
+  font-family: var(--primary-font);
   font-weight: 600;
   color: #374151;
   letter-spacing: 0.5px;
@@ -147,34 +146,20 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  transition-delay: 0.9s;
+  transition-delay: 0.45s;
 }
 
 .quoteText {
   font-size: 20px;
-  font-family: var(--font-primary);
+  font-family: var(--primary-font);
   font-weight: 400;
   color: rgba(33, 33, 33, 0.9);
   letter-spacing: 0.3px;
   line-height: 1.6;
 }
 
-.cursor {
-  display: inline-block;
-  width: 0; /* Remove width to prevent displacement */
-  height: 24px;
- 
-  margin-left: 2px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
 .ctaContainer {
-  transition-delay: 1.2s;
+  transition-delay: 0.6s;
 }
 
 .ctaButton {
@@ -187,7 +172,7 @@
   border-radius: 35px;
   color: white;
   font-size: 18px;
-  font-family: var(--font-primary);
+  font-family: var(--primary-font);
   font-weight: 600;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -217,9 +202,10 @@
 
 /* Mobile Styles */
 @media (max-width: 767px) {
-    .heroSection {
-    padding-top: 60px; /* Smaller padding for mobile */
+  .heroSection {
+    padding-top: 60px;
   }
+  
   .contentContainer {
     padding: 0 20px;
     max-width: 90%;
@@ -231,22 +217,18 @@
   
   .name {
     font-size: 42px;
-     font-family: var(--font-primary);
+    font-family: var(--primary-font);
   }
   
   .titleBadge {
     font-size: 18px;
-     font-family: var(--font-primary);
+    font-family: var(--primary-font);
     padding: 8px 16px;
   }
   
   .quoteText {
     font-size: 16px;
-     font-family: var(--font-primary);
-  }
-  
-  .cursor {
-    height: 20px;
+    font-family: var(--primary-font);
   }
   
   .ctaButton {

@@ -1,28 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Markdown from 'react-markdown';
 import styles from './ProjectVideoDialog.module.css';
 
 const ProjectVideoDialog = ({ project, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  
+  const videoRef = useRef(null);
+  const controlsTimeoutRef = useRef(null);
 
   useEffect(() => {
-    // Start animations on mount
     setTimeout(() => setIsVisible(true), 10);
-    
-    // Prevent body scroll when dialog is open
-    // document.body.style.overflow = 'hidden';
-    
     return () => {
       document.body.style.overflow = 'unset';
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
     };
   }, []);
 
-  const handleClose = async () => {
+  const showVideoControls = () => {
+    setShowControls(true);
+    
+    // Clear existing timeout
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    
+    // Set new timeout to hide controls after 3 seconds
+    controlsTimeoutRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 3000);
+  };
+
+  const handleMouseMove = () => {
+    showVideoControls();
+  };
+
+  const handleMouseLeave = () => {
+    // Clear timeout when mouse leaves video area
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    setShowControls(false);
+  };
+
+  const handleClose = () => {
     setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-    }, 300);
+    setTimeout(() => onClose(), 300);
   };
 
   const handleOverlayClick = (e) => {
@@ -31,14 +65,135 @@ const ProjectVideoDialog = ({ project, onClose }) => {
     }
   };
 
+  const handlePlayVideo = () => {
+    setError(false);
+    setIsLoading(true);
+    setIsVideoVisible(true);
+    showVideoControls();
+    
+    // Start playing video after a short delay to ensure it's loaded
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.play().catch(error => {
+          console.error('Error playing video:', error);
+          setError(true);
+          setIsLoading(false);
+        });
+      }
+    }, 100);
+  };
+
+  const handleVideoLoad = () => {
+    setIsLoading(false);
+    setError(false);
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
+      // Auto-play the video once it's loaded
+      videoRef.current.play().catch(error => {
+        console.error('Error playing video:', error);
+        setError(true);
+      });
+    }
+    showVideoControls();
+  };
+
+  const handleVideoError = (e) => {
+    setIsLoading(false);
+    setError(true);
+    console.error('Video failed to load:', videoUrl);
+    console.error('Video error details:', e);
+  };
+
+  const handleVideoPlay = () => {
+    setIsPlaying(true);
+    showVideoControls();
+  };
+
+  const handleVideoPause = () => {
+    setIsPlaying(false);
+    showVideoControls();
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime);
+    }
+  };
+
+  const togglePlayPause = () => {
+    showVideoControls();
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(error => {
+          console.error('Error playing video:', error);
+        });
+      }
+    }
+  };
+
+  const handleSeek = (e) => {
+    showVideoControls();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const newTime = (clickX / rect.width) * duration;
+    if (videoRef.current) {
+      videoRef.current.currentTime = newTime;
+    }
+  };
+
+  const handleVolumeChange = (e) => {
+    showVideoControls();
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    setIsMuted(newVolume === 0);
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume;
+    }
+  };
+
+  const toggleMute = () => {
+    showVideoControls();
+    if (videoRef.current) {
+      if (isMuted) {
+        videoRef.current.volume = volume;
+        setIsMuted(false);
+      } else {
+        videoRef.current.volume = 0;
+        setIsMuted(true);
+      }
+    }
+  };
+
+  const closeVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+    setIsVideoVisible(false);
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setError(false);
+    setShowControls(true);
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+  };
+
+  const formatTime = (time) => {
+    if (isNaN(time)) return '0:00';
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
   const formatDate = (date) => {
     const d = new Date(date);
     return `${d.getMonth() + 1}/${d.getFullYear()}`;
   };
 
-  const getFirstParagraph = (description) => {
-    return description.split('\n')[0].replace(/\*\*/g, '');
-  };
+  const videoUrl = project.videoUrl;
 
   return (
     <div 
@@ -46,155 +201,149 @@ const ProjectVideoDialog = ({ project, onClose }) => {
       onClick={handleOverlayClick}
     >
       <div 
-        className={`${styles.dialogContainer} ${isVisible ? styles.visible : ''} ${isClosing ? styles.closing : ''}`}
+        className={`${styles.dialog} ${isVisible ? styles.visible : ''} ${isClosing ? styles.closing : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className={styles.header}>
           <h2 className={styles.title}>{project.title}</h2>
-          <button 
-            className={styles.closeButton}
-            onClick={handleClose}
-            aria-label="Close dialog"
-          >
-            <span className={styles.closeIcon}>×</span>
+          <button className={styles.closeButton} onClick={handleClose}>
+            ×
           </button>
         </div>
 
         {/* Content */}
         <div className={styles.content}>
-          <div className={styles.desktopLayout}>
-            {/* Video Section */}
-            <div className={styles.videoSection}>
-              <div className={styles.videoContainer}>
+          {/* Video Section */}
+          <div className={styles.videoSection}>
+            <div className={styles.videoContainer}>
+              {!isVideoVisible ? (
+                // Thumbnail with play button
                 <div 
-                  className={styles.videoThumbnail}
-                  style={{ backgroundImage: `url(${project.thumbnailUrl})` }}
+                  className={styles.thumbnail}
+                  style={{ 
+                    backgroundImage: project.thumbnailUrl ? `url(${project.thumbnailUrl})` : 'none' 
+                  }}
                 >
-                  <div className={styles.videoOverlay}></div>
-                  
-                  {/* Play Button */}
-                  <div className={styles.videoPlayButton}>
-                    <div className={styles.playIcon}>▶</div>
-                  </div>
-
-                  {/* Demo Video Label */}
-                  <div className={styles.videoLabel}>
-                    Demo Video
-                  </div>
+                  <button className={styles.playButton} onClick={handlePlayVideo}>
+                    {isLoading ? '⟳' : '▶'}
+                  </button>
+                  <div className={styles.videoLabel}>Demo Video</div>
                 </div>
-              </div>
-            </div>
+              ) : (
+                // Video player
+                <div 
+                  className={styles.videoPlayer}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {isLoading && (
+                    <div className={styles.loading}>
+                      <div className={styles.spinner}>⟳</div>
+                      <div>Loading video...</div>
+                    </div>
+                  )}
 
-            {/* Details Section */}
-            <div className={styles.detailsSection}>
-              {/* Technologies */}
-              <div className={styles.section}>
-                <h3 className={styles.sectionTitle}>Technologies</h3>
-                <div className={styles.technologiesGrid}>
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className={styles.techBadge}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                  {error && (
+                    <div className={styles.error}>
+                      <div className={styles.errorIcon}>⚠</div>
+                      <div>Video failed to load</div>
+                      <div className={styles.errorUrl}>URL: {videoUrl}</div>
+                      <div className={styles.errorActions}>
+                        <button onClick={handlePlayVideo}>Retry</button>
+                        <button onClick={closeVideo}>Back</button>
+                      </div>
+                    </div>
+                  )}
 
-              {/* Category and Date */}
-              <div className={styles.infoGrid}>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>Category</span>
-                  <span className={styles.infoValue}>{project.category}</span>
-                </div>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>Completed</span>
-                  <span className={styles.infoValue}>
-                    {formatDate(project.completionDate)}
-                  </span>
-                </div>
-              </div>
-
-              {/* Project Details */}
-              <div className={styles.section}>
-                <h3 className={styles.sectionTitle}>Project Details</h3>
-                <div className={styles.description}>
-                  <Markdown 
-                    components={{
-                      p: ({ children }) => <p className={styles.paragraph}>{children}</p>,
-                      strong: ({ children }) => <strong className={styles.bold}>{children}</strong>,
-                      ul: ({ children }) => <ul className={styles.list}>{children}</ul>,
-                      li: ({ children }) => <li className={styles.listItem}>{children}</li>,
-                    }}
+                  <video
+                    ref={videoRef}
+                    className={styles.video}
+                    onLoadedData={handleVideoLoad}
+                    onLoadedMetadata={handleVideoLoad}
+                    onCanPlay={handleVideoLoad}
+                    onError={handleVideoError}
+                    onPlay={handleVideoPlay}
+                    onPause={handleVideoPause}
+                    onTimeUpdate={handleTimeUpdate}
+                    onClick={togglePlayPause}
+                    preload="metadata"
+                    controls={false}
                   >
-                    {project.detailedDescription}
-                  </Markdown >
+                    <source src={videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+
+                  {/* Close Button - Always visible */}
+                  {/* <button className={styles.closeVideoButton} onClick={closeVideo}>
+                    ×
+                  </button> */}
+
+                  {/* Video Controls */}
+                  <div className={`${styles.controls} ${showControls ? styles.controlsVisible : styles.controlsHidden}`}>
+                    <div className={styles.progressBar} onClick={handleSeek}>
+                      <div 
+                        className={styles.progressFill}
+                        style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+                      />
+                    </div>
+                    
+                    <div className={styles.controlButtons}>
+                      <div className={styles.leftControls}>
+                        <button onClick={togglePlayPause}>
+                          {isPlaying ? '⏸' : '▶'}
+                        </button>
+                        <button onClick={toggleMute}>
+                          {isMuted ? '🔇' : '🔊'}
+                        </button>
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.1"
+                          value={isMuted ? 0 : volume}
+                          onChange={handleVolumeChange}
+                          className={styles.volumeSlider}
+                        />
+                        <span className={styles.timeDisplay}>
+                          {formatTime(currentTime)} / {formatTime(duration)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
-          {/* Mobile Layout */}
-          <div className={styles.mobileLayout}>
-            {/* Video Section */}
-            <div className={styles.videoSection}>
-              <div className={styles.videoContainer}>
-                <div 
-                  className={styles.videoThumbnail}
-                  style={{ backgroundImage: `url(${project.thumbnailUrl})` }}
-                >
-                  <div className={styles.videoOverlay}></div>
-                  
-                  <div className={styles.videoPlayButton}>
-                    <div className={styles.playIcon}>▶</div>
-                  </div>
-
-                  <div className={styles.videoLabel}>
-                    Demo Video
-                  </div>
-                </div>
+          {/* Details Section */}
+          <div className={styles.details}>
+            <div className={styles.section}>
+              <h3>Technologies</h3>
+              <div className={styles.technologies}>
+                {project.technologies?.map((tech, index) => (
+                  <span key={index} className={styles.techBadge}>
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* Details Section */}
-            <div className={styles.detailsSection}>
-              <div className={styles.section}>
-                <h3 className={styles.sectionTitle}>Technologies</h3>
-                <div className={styles.technologiesGrid}>
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className={styles.techBadge}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+            <div className={styles.info}>
+              <div className={styles.infoItem}>
+                <span className={styles.label}>Category</span>
+                <span className={styles.value}>{project.category}</span>
               </div>
-
-              <div className={styles.infoGrid}>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>Category</span>
-                  <span className={styles.infoValue}>{project.category}</span>
-                </div>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>Completed</span>
-                  <span className={styles.infoValue}>
-                    {formatDate(project.completionDate)}
-                  </span>
-                </div>
+              <div className={styles.infoItem}>
+                <span className={styles.label}>Completed</span>
+                <span className={styles.value}>{formatDate(project.completionDate)}</span>
               </div>
+            </div>
 
-              <div className={styles.section}>
-                <h3 className={styles.sectionTitle}>Project Details</h3>
-                <div className={styles.description}>
-                  <Markdown 
-                    components={{
-                      p: ({ children }) => <p className={styles.paragraph}>{children}</p>,
-                      strong: ({ children }) => <strong className={styles.bold}>{children}</strong>,
-                      ul: ({ children }) => <ul className={styles.list}>{children}</ul>,
-                      li: ({ children }) => <li className={styles.listItem}>{children}</li>,
-                    }}
-                  >
-                    {project.detailedDescription}
-                  </Markdown >
-                </div>
+            <div className={styles.section}>
+              <h3>Project Details</h3>
+              <div className={styles.description}>
+                <Markdown>{project.detailedDescription}</Markdown>
               </div>
             </div>
           </div>
@@ -205,3 +354,344 @@ const ProjectVideoDialog = ({ project, onClose }) => {
 };
 
 export default ProjectVideoDialog;
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import Markdown from 'react-markdown';
+// import styles from './ProjectVideoDialog.module.css';
+
+// const ProjectVideoDialog = ({ project, onClose }) => {
+//   const [isVisible, setIsVisible] = useState(false);
+//   const [isClosing, setIsClosing] = useState(false);
+//   const [isVideoVisible, setIsVideoVisible] = useState(false);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [error, setError] = useState(false);
+//   const [isPlaying, setIsPlaying] = useState(false);
+//   const [currentTime, setCurrentTime] = useState(0);
+//   const [duration, setDuration] = useState(0);
+//   const [volume, setVolume] = useState(1);
+//   const [isMuted, setIsMuted] = useState(false);
+//   const [showControls, setShowControls] = useState(true);
+  
+//   const videoRef = useRef(null);
+//   const controlsTimeoutRef = useRef(null);
+
+//   useEffect(() => {
+//     setTimeout(() => setIsVisible(true), 10);
+//     return () => {
+//       document.body.style.overflow = 'unset';
+//       if (controlsTimeoutRef.current) {
+//         clearTimeout(controlsTimeoutRef.current);
+//       }
+//     };
+//   }, []);
+
+//   const showVideoControls = () => {
+//     setShowControls(true);
+    
+//     // Clear existing timeout
+//     if (controlsTimeoutRef.current) {
+//       clearTimeout(controlsTimeoutRef.current);
+//     }
+    
+//     // Set new timeout to hide controls after 1 second
+//     controlsTimeoutRef.current = setTimeout(() => {
+//       setShowControls(false);
+//     }, 1000);
+//   };
+
+//   const handleMouseMove = () => {
+//     showVideoControls();
+//   };
+
+//   const handleMouseLeave = () => {
+//     // Clear timeout when mouse leaves video area
+//     if (controlsTimeoutRef.current) {
+//       clearTimeout(controlsTimeoutRef.current);
+//     }
+//     setShowControls(false);
+//   };
+
+//   const handleClose = () => {
+//     setIsClosing(true);
+//     setTimeout(() => onClose(), 300);
+//   };
+
+//   const handleOverlayClick = (e) => {
+//     if (e.target === e.currentTarget) {
+//       handleClose();
+//     }
+//   };
+
+//   const handlePlayVideo = () => {
+//     setError(false);
+//     setIsLoading(true);
+//     setIsVideoVisible(true);
+//     showVideoControls();
+//   };
+
+//   const handleVideoLoad = () => {
+//     setIsLoading(false);
+//     setError(false);
+//     if (videoRef.current) {
+//       setDuration(videoRef.current.duration);
+//     }
+//     showVideoControls();
+//   };
+
+//   const handleVideoError = (e) => {
+//     setIsLoading(false);
+//     setError(true);
+//     console.error('Video failed to load:', videoUrl);
+//     console.error('Video error details:', e);
+//   };
+
+//   const handleVideoPlay = () => {
+//     setIsPlaying(true);
+//     showVideoControls();
+//   };
+
+//   const handleVideoPause = () => {
+//     setIsPlaying(false);
+//     showVideoControls();
+//   };
+
+//   const handleTimeUpdate = () => {
+//     if (videoRef.current) {
+//       setCurrentTime(videoRef.current.currentTime);
+//     }
+//   };
+
+//   const togglePlayPause = () => {
+//     showVideoControls();
+//     if (videoRef.current) {
+//       if (isPlaying) {
+//         videoRef.current.pause();
+//       } else {
+//         videoRef.current.play().catch(error => {
+//           console.error('Error playing video:', error);
+//         });
+//       }
+//     }
+//   };
+
+//   const handleSeek = (e) => {
+//     showVideoControls();
+//     const rect = e.currentTarget.getBoundingClientRect();
+//     const clickX = e.clientX - rect.left;
+//     const newTime = (clickX / rect.width) * duration;
+//     if (videoRef.current) {
+//       videoRef.current.currentTime = newTime;
+//     }
+//   };
+
+//   const handleVolumeChange = (e) => {
+//     showVideoControls();
+//     const newVolume = parseFloat(e.target.value);
+//     setVolume(newVolume);
+//     setIsMuted(newVolume === 0);
+//     if (videoRef.current) {
+//       videoRef.current.volume = newVolume;
+//     }
+//   };
+
+//   const toggleMute = () => {
+//     showVideoControls();
+//     if (videoRef.current) {
+//       if (isMuted) {
+//         videoRef.current.volume = volume;
+//         setIsMuted(false);
+//       } else {
+//         videoRef.current.volume = 0;
+//         setIsMuted(true);
+//       }
+//     }
+//   };
+
+//   const closeVideo = () => {
+//     if (videoRef.current) {
+//       videoRef.current.pause();
+//       videoRef.current.currentTime = 0;
+//     }
+//     setIsVideoVisible(false);
+//     setIsPlaying(false);
+//     setCurrentTime(0);
+//     setError(false);
+//     setShowControls(true);
+//     if (controlsTimeoutRef.current) {
+//       clearTimeout(controlsTimeoutRef.current);
+//     }
+//   };
+
+//   const formatTime = (time) => {
+//     if (isNaN(time)) return '0:00';
+//     const minutes = Math.floor(time / 60);
+//     const seconds = Math.floor(time % 60);
+//     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+//   };
+
+//   const formatDate = (date) => {
+//     const d = new Date(date);
+//     return `${d.getMonth() + 1}/${d.getFullYear()}`;
+//   };
+
+//   const videoUrl = project.videoUrl;
+
+//   return (
+//     <div 
+//       className={`${styles.overlay} ${isVisible ? styles.visible : ''} ${isClosing ? styles.closing : ''}`}
+//       onClick={handleOverlayClick}
+//     >
+//       <div 
+//         className={`${styles.dialog} ${isVisible ? styles.visible : ''} ${isClosing ? styles.closing : ''}`}
+//         onClick={(e) => e.stopPropagation()}
+//       >
+//         {/* Header */}
+//         <div className={styles.header}>
+//           <h2 className={styles.title}>{project.title}</h2>
+//           <button className={styles.closeButton} onClick={handleClose}>
+//             ×
+//           </button>
+//         </div>
+
+//         {/* Content */}
+//         <div className={styles.content}>
+//           {/* Video Section */}
+//           <div className={styles.videoSection}>
+//             <div className={styles.videoContainer}>
+//               {!isVideoVisible ? (
+//                 // Thumbnail with play button
+//                 <div 
+//                   className={styles.thumbnail}
+//                   style={{ 
+//                     backgroundImage: project.thumbnailUrl ? `url(${project.thumbnailUrl})` : 'none' 
+//                   }}
+//                 >
+//                   <button className={styles.playButton} onClick={handlePlayVideo}>
+//                     {isLoading ? '⟳' : '▶'}
+//                   </button>
+//                   <div className={styles.videoLabel}>Demo Video</div>
+//                 </div>
+//               ) : (
+//                 // Video player
+//                 <div 
+//                   className={styles.videoPlayer}
+//                   onMouseMove={handleMouseMove}
+//                   onMouseLeave={handleMouseLeave}
+//                 >
+//                   {isLoading && (
+//                     <div className={styles.loading}>
+//                       <div className={styles.spinner}>⟳</div>
+//                       <div>Loading video...</div>
+//                     </div>
+//                   )}
+
+//                   {error && (
+//                     <div className={styles.error}>
+//                       <div className={styles.errorIcon}>⚠</div>
+//                       <div>Video failed to load</div>
+//                       <div className={styles.errorUrl}>URL: {videoUrl}</div>
+//                       <div className={styles.errorActions}>
+//                         <button onClick={handlePlayVideo}>Retry</button>
+//                         <button onClick={closeVideo}>Back</button>
+//                       </div>
+//                     </div>
+//                   )}
+
+//                   <video
+//                     ref={videoRef}
+//                     className={styles.video}
+//                     onLoadedData={handleVideoLoad}
+//                     onLoadedMetadata={handleVideoLoad}
+//                     onCanPlay={handleVideoLoad}
+//                     onError={handleVideoError}
+//                     onPlay={handleVideoPlay}
+//                     onPause={handleVideoPause}
+//                     onTimeUpdate={handleTimeUpdate}
+//                     onClick={togglePlayPause}
+//                     preload="metadata"
+//                     controls={false}
+//                   >
+//                     <source src={videoUrl} type="video/mp4" />
+//                     Your browser does not support the video tag.
+//                   </video>
+
+//                   {/* Close Button - Always visible */}
+//                   <button className={styles.closeVideoButton} onClick={closeVideo}>
+//                     ×
+//                   </button>
+
+//                   {/* Video Controls */}
+//                   <div className={`${styles.controls} ${showControls ? styles.controlsVisible : styles.controlsHidden}`}>
+//                     <div className={styles.progressBar} onClick={handleSeek}>
+//                       <div 
+//                         className={styles.progressFill}
+//                         style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+//                       />
+//                     </div>
+                    
+//                     <div className={styles.controlButtons}>
+//                       <div className={styles.leftControls}>
+//                         <button onClick={togglePlayPause}>
+//                           {isPlaying ? '⏸' : '▶'}
+//                         </button>
+//                         <button onClick={toggleMute}>
+//                           {isMuted ? '🔇' : '🔊'}
+//                         </button>
+//                         <input
+//                           type="range"
+//                           min="0"
+//                           max="1"
+//                           step="0.1"
+//                           value={isMuted ? 0 : volume}
+//                           onChange={handleVolumeChange}
+//                           className={styles.volumeSlider}
+//                         />
+//                         <span className={styles.timeDisplay}>
+//                           {formatTime(currentTime)} / {formatTime(duration)}
+//                         </span>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Details Section */}
+//           <div className={styles.details}>
+//             <div className={styles.section}>
+//               <h3>Technologies</h3>
+//               <div className={styles.technologies}>
+//                 {project.technologies?.map((tech, index) => (
+//                   <span key={index} className={styles.techBadge}>
+//                     {tech}
+//                   </span>
+//                 ))}
+//               </div>
+//             </div>
+
+//             <div className={styles.info}>
+//               <div className={styles.infoItem}>
+//                 <span className={styles.label}>Category</span>
+//                 <span className={styles.value}>{project.category}</span>
+//               </div>
+//               <div className={styles.infoItem}>
+//                 <span className={styles.label}>Completed</span>
+//                 <span className={styles.value}>{formatDate(project.completionDate)}</span>
+//               </div>
+//             </div>
+
+//             <div className={styles.section}>
+//               <h3>Project Details</h3>
+//               <div className={styles.description}>
+//                 <Markdown>{project.detailedDescription}</Markdown>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProjectVideoDialog;
