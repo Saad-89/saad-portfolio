@@ -177,9 +177,9 @@ const ContactSection = () => {
 
   const handleSocialClick = (platform) => {
     const urls = {
-      linkedin: 'https://linkedin.com/in/yourprofile',
-      github: 'https://github.com/yourusername',
-      twitter: 'https://twitter.com/yourusername'
+      linkedin: 'https://www.linkedin.com/in/muhammadsaad89/',
+      github: 'https://github.com/Saad-89',
+      twitter: 'https://x.com/saadkashmiri_'
     };
     
     if (urls[platform]) {

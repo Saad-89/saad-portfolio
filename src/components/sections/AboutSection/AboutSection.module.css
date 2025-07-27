@@ -264,3 +264,11 @@
 .animate .imageContent {
   will-change: auto;
 }
+
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; /* or whatever styling you prefer */
+}

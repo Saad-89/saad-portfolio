@@ -1,6 +1,23 @@
 import { ProjectModel } from '../models/ProjectModel.js';
 
-import carwashImage from '../../../src/assets/images/carwash.png';
+import carwashThumbnail from '../../../src/assets/images/carwashThumbnail.png';
+import vetpassThumbnail from '../../../src/assets/images/vetpassThumbnail.png';
+
+import dialavetThumbnail from '../../../src/assets/images/dialavetThumbnail.png';
+import eeDoctorsThumbnail from '../../../src/assets/images/eeDoctorsThumbnail.png';
+import heydividend from '../../../src/assets/images/heydividend.png';
+import hubavetThumbnail from '../../../src/assets/images/hubavetThumbnail.png';
+import indieFilmsRus from '../../../src/assets/images/indieFilmsRus.png';
+import momoyogaThumbnail from '../../../src/assets/images/momoyogaThumbnail.png';
+import NOVAThumbnail from '../../../src/assets/images/NOVAThumbnail.png';
+import pangoVetThumbnail from '../../../src/assets/images/pangoVetThumbnail.png';
+import PapaScore from '../../../src/assets/images/PapaScore.png';
+import pawssumThumbnail from '../../../src/assets/images/pawssumThumbnail.png';
+import sheTracker from '../../../src/assets/images/sheTracker.png';
+import yoyo from '../../../src/assets/images/yoyo.png';
+
+
+
 
 
 export const portfolioData = {
@@ -41,7 +58,7 @@ A cutting-edge SaaS platform revolutionizing car wash operations with seamless m
 **Location:** 28 Wyngate Dr, Avon, CT 06001
 
 **Pricing:** $495/month SaaS model with no setup fees, includes all features and unlimited website integration links.`,
-  thumbnailUrl: carwashImage,
+  thumbnailUrl: carwashThumbnail,
   videoUrl: "./videos/carwash.mp4",
   technologies: ['React', 'Node.js', 'QR Technology', 'GPS Integration', 'Payment APIs', 'SMS/Email APIs', 'Real-time Analytics', 'Mobile Web App', 'Cloud Infrastructure'],
   category: 'SaaS Platform',
@@ -84,7 +101,7 @@ A comprehensive telemedicine solution transforming pet healthcare delivery acros
 **Coverage:** Australia, Canada, USA, United Kingdom
 
 **Technology Stack:** Web-based video platform, secure payment processing, appointment scheduling system, licensed veterinarian matching algorithm.`,
-  thumbnailUrl: '/images/projects/dialavet_thumbnail.jpg',
+  thumbnailUrl: dialavetThumbnail,
   videoUrl: './videos/dialavet.mp4',
   technologies: ['React', 'Node.js', 'WebRTC', 'Payment Gateway', 'Video Streaming', 'Telehealth APIs', 'Security Compliance', 'Cloud Infrastructure'],
   category: 'Telehealth',
@@ -130,7 +147,7 @@ A cutting-edge Swiss medical platform revolutionizing healthcare accessibility a
 **Coverage:** Switzerland, Germany, Austria
 **Average Consultation:** 12 minutes
 **Medical Team:** 25 licensed physicians`,
-  thumbnailUrl: '/images/projects/eedoctors_thumbnail.jpg',
+  thumbnailUrl: eeDoctorsThumbnail,
   videoUrl: './videos/eeDoctors.mp4',
   technologies: ['React Native', 'WebRTC', 'Swiss Payment APIs', 'Medical Compliance', 'Video Streaming', 'Secure Messaging', 'Digital Prescriptions', 'Health Records'],
   category: 'Telehealth',
@@ -177,7 +194,7 @@ Revolutionary mobile application transforming dividend investing through artific
 **Target Audience:** Dividend investors seeking passive income optimization
 **AI Integration:** Machine learning for stock analysis and recommendations
 **Data Sources:** Real-time financial market APIs and dividend databases`,
-  thumbnailUrl: '/images/projects/heydividend_thumbnail.jpg',
+  thumbnailUrl: heydividend,
   videoUrl: './videos/fintech.mp4',
   technologies: ['React Native', 'AI/ML APIs', 'Financial Data APIs', 'Real-time Analytics', 'Push Notifications', 'Secure Authentication', 'Chart Libraries', 'Redux'],
   category: 'Fintech',
@@ -225,7 +242,7 @@ Ultimate football companion app delivering live streaming and comprehensive matc
 **Coverage:** Global football leagues and tournaments
 **Real-Time Data:** Live scores, statistics, and match events
 **Content:** News, highlights, analysis, and exclusive footage`,
-  thumbnailUrl: '/images/projects/papascore_thumbnail.jpg',
+  thumbnailUrl: PapaScore,
   videoUrl: './videos/football.mp4',
   technologies: ['Flutter', 'Video Streaming APIs', 'Sports Data APIs', 'Push Notifications', 'Real-time Analytics', 'Social Integration', 'Offline Storage', 'WebRTC'],
   category: 'Sports & Entertainment',
@@ -255,7 +272,7 @@ Transform veterinary care with modern telehealth solutions:
 - Platform: [hubavet.com](https://www.hubavet.com/) 
 - Demo Request: Available on website
 - Founded by veterinarian for veterinarians`,
-  thumbnailUrl: '/images/projects/hubavet_thumbnail.jpg',
+  thumbnailUrl: hubavetThumbnail,
   videoUrl: './videos/hubavet.mp4',
   technologies: ['Telehealth', 'Video Conferencing', 'Payment Processing', 'Mobile App', 'Web Platform'],
   category: 'Healthcare Technology',
@@ -289,7 +306,7 @@ Discover and support the next generation of independent filmmakers:
 - iOS App: [IOS](https://apps.apple.com/pk/app/indiefilmsrus/id6739507017)
 - Developer: Indie Films R Us LLC
 - Privacy Policy: https://indiefilmsrus.com/privacy`,
-  thumbnailUrl: '/images/projects/indiefilms_thumbnail.jpg',
+  thumbnailUrl: indieFilmsRus,
   videoUrl: './videos/indieapp.mp4',
   technologies: ['Flutter', 'Streaming', 'Payment Integration', 'Cross-Platform', 'Video Playback'],
   category: 'Entertainment',
@@ -322,7 +339,7 @@ The complete solution for yoga teachers and studios to organize their practice:
 - Mobile App: [Android](https://play.google.com/store/apps/details?id=com.momostudio.momoyoga&hl=en_US) - [IOS](https://apps.apple.com/us/app/momoyoga/id1233882505)
 - Website Integration: Supports WordPress, Squarespace, Wix, Joomla
 - Support: Expert guidance from yoga community specialists`,
-  thumbnailUrl: '/images/projects/momoyoga_thumbnail.jpg',
+  thumbnailUrl:momoyogaThumbnail,
   videoUrl: './videos/monoyoga.mp4',
  technologies: ['JavaScript', 'React', 'Node.js', 'PHP', 'MySQL', 'Mobile Apps', 'Payment APIs', 'Video Streaming APIs'],
   category: 'Health & Fitness',
@@ -357,7 +374,7 @@ Simple and secure telehealth solution for healthcare providers:
 - BAA Download: Available after signup
 - Global Compliance: HIPAA, GDPR, PHIPA/PIPEDA, HITECH
 - No Download Required: Browser-based solution`,
-  thumbnailUrl: '/images/projects/nova_thumbnail.jpg',
+  thumbnailUrl: NOVAThumbnail,
   videoUrl: './videos/Nova.mp4',
   technologies: ['WebRTC', 'React', 'Node.js', 'HIPAA Compliance', 'Real-time Communication', 'Cross-Platform'],
   category: 'Healthcare Technology',
@@ -391,7 +408,7 @@ Professional online veterinary consultation service for pet owners:
 - Focus: Pet health navigation and consultation
 - Team: From creators of Catster & Dogster
 - Mission: Enhance pet health and welfare through online veterinary access`,
-  thumbnailUrl: '/images/projects/pangovet_thumbnail.jpg',
+  thumbnailUrl: pangoVetThumbnail,
   videoUrl: './videos/PangoVet.mp4',
   technologies: ['Flutter', 'Video Calling', 'Real-time Communication', 'Veterinary Platform', 'Mobile Health'],
   category: 'Healthcare Technology',
@@ -426,7 +443,7 @@ On-demand veterinary services delivered to your home across Australia:
 - Hours: 7:30am-10:30pm, 7 days a week
 - Services: Mobile vet, telepet video calls, emergency care
 - Founded: 2016 - Australia's largest mobile vet network`,
-  thumbnailUrl: '/images/projects/pawssum_thumbnail.jpg',
+  thumbnailUrl: pawssumThumbnail,
   videoUrl: './videos/pawssum.mp4',
   technologies: ['Flutter', 'Booking System', 'Video Calling', 'Payment Processing', 'GPS Location', 'Real-time Scheduling'],
   category: 'Healthcare Technology',
@@ -457,7 +474,7 @@ The global platform and app for pet owners, veterinarians, pet service providers
 • **iOS (Veterinarians):** [App Store](https://apps.apple.com/in/developer/vetpass-ltd/id1542015337)
 
 *Multi-award winning platform serving pet owners, veterinarians, and pet service providers globally with AI-powered health insights and comprehensive pet care management.*`,
-    thumbnailUrl: '/images/projects/vetpass_thumbnail.jpg',
+    thumbnailUrl: vetpassThumbnail,
     videoUrl: './videos/vetpass.mp4',
     technologies: ['React Native', 'Node.js', 'AI/ML', 'WebRTC', 'Cloud Database', 'Push Notifications', 'Geolocation', 'Payment Integration'],
     category: 'Healthcare',
@@ -489,7 +506,7 @@ Revolutionary educational platform connecting students and tutors through AI-dri
 • **Android (Tutors):** [Google Play - Yoyo Tutor](https://play.google.com/store/apps/details?id=com.yoyotutor.yoyo)
 
 *Advanced AI language learning platform designed for schools and educational institutions, featuring real-time pronunciation feedback and comprehensive progress tracking across 8 major languages.*`,
-    thumbnailUrl: '/images/projects/yoyo_thumbnail.jpg',
+    thumbnailUrl: yoyo,
     videoUrl: './videos/yoyo.mp4',
     technologies: ['React Native', 'AI/ML', 'Speech Recognition', 'Natural Language Processing', 'Cloud Computing', 'Real-time Analytics', 'Push Notifications', 'Secure Authentication'],
     category: 'Education',

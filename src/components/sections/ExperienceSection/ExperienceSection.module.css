@@ -89,7 +89,8 @@
 .experienceCard {
   width: 100%;
   max-width: 80%; /* Reduced from full width */
-  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); /* White to light blue gradient */
+  background: #ffffff;  /* White to light blue gradient   linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); */
+  
   border-radius: 24px;
   border: 1px solid rgba(128, 128, 128, 0.1);
   box-shadow: 
@@ -114,7 +115,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 248, 255, 0.6));
+  background: white;
   border-radius: 24px;
   pointer-events: none;
 }

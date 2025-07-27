@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 40%, #e8e8e8 80%, #d8d8d8 100%);
+  background: white;
   overflow: hidden;
   padding-top: 80px;
 }
