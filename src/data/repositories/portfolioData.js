@@ -65,97 +65,114 @@ A cutting-edge SaaS platform revolutionizing car wash operations with seamless m
   completionDate: new Date(2024, 2, 15) // March 15, 2024
 }),
 
-new ProjectModel({
+  new ProjectModel({
   id: '2',
-  title: 'Dial-a-Vet',
-  shortDescription: 'Revolutionary 24/7 telehealth platform connecting pet owners with licensed veterinarians',
+  title: 'PangoVet App',
+  shortDescription: 'Online veterinary consultation platform connecting pet owners with certified vets',
   detailedDescription: `**Veterinary Telehealth Platform**
-A comprehensive telemedicine solution transforming pet healthcare delivery across Australia and globally:
 
-- **24/7 Veterinary Access** - Connect with licensed Australian veterinarians and veterinary nurses in minutes
-- **Affordable Care Model** - Fixed $49 consultation fee making veterinary care accessible to all pet owners
-- **Video Consultation Platform** - High-quality video calls enabling real-time pet diagnosis and treatment advice
-- **Instant Booking System** - Book appointments in minutes with average wait time of 7-8 minutes
-- **Multi-Platform Accessibility** - Web-based platform accessible from any device, anywhere
-- **Enterprise-Grade Security** - HIPAA compliant and SOC-2 certified software ensuring data protection
-- **Global Expansion** - Successfully expanded to Canada, USA, and UK markets from Australian foundation
-- **High Success Rate** - 90% of pet concerns resolved remotely without in-person visits
-- **Scalable Infrastructure** - Serving over 40,000 pet owners since launch in August 2022
-- **Professional Network** - Licensed veterinary professionals providing expert diagnosis and treatment plans
-- **Emergency Support** - Available when local clinics are closed, providing urgent care guidance
-- **Corporate Solutions** - Employee benefit programs for companies to provide pet care support
+Professional online veterinary consultation service for pet owners:
 
-*Founded by CEO Josh Fidrmuc, revolutionizing pet care accessibility with cutting-edge telehealth technology and affordable pricing model.*
+- **20-Minute Video Calls** - Direct video consultations with licensed veterinary experts
+- **Certified Veterinarians** - Access to qualified veterinary professionals online
+- **Pet Health Navigation** - Expert guidance for various pet health issues and concerns
+- **Affordable Consultation** - Cost-effective alternative to in-person vet visits
+- **Personalized Advice** - Tailored recommendations specific to your pet's needs
+- **Complement Regular Care** - Designed to enhance, not replace, your pet's regular veterinarian
+- **Remote Access** - Reach veterinary expertise from anywhere, especially remote locations
+- **Question & Answer Format** - Ask all your questions and raise concerns about your pet
+- **Educational Focus** - Helping pet owners understand and navigate health issues
+- **No Prescription Services** - Focuses on consultation and advice rather than prescriptions
+- **Convenient Access** - Available when you can't get to a regular vet immediately
 
-**Key Achievements:**
-- Over 40,000 registered pet owners
-- 90% consultation success rate
-- 4-star customer satisfaction rating
-- Strategic acquisition of SpeakToAVet.com in 2024
-- Global expansion to 4 countries
-- Average consultation connection time: 7-8 minutes
+*Created by the team behind Catster & Dogster, PangoVet bridges the gap between pet owners and veterinary expertise through accessible online consultations.*
 
-**Live Platform:** [dialavet.com](https://www.dialavet.com/)
-**Support:** [support@dialavet.com.au](mailto:support@dialavet.com.au)
-**Business Model:** $49 per consultation (previously $25)
-**Coverage:** Australia, Canada, USA, United Kingdom
-
-**Technology Stack:** Web-based video platform, secure payment processing, appointment scheduling system, licensed veterinarian matching algorithm.`,
-  thumbnailUrl: dialavetThumbnail,
-  videoUrl: './videos/dialavet.mp4',
-  technologies: ['React', 'Node.js', 'WebRTC', 'Payment Gateway', 'Video Streaming', 'Telehealth APIs', 'Security Compliance', 'Cloud Infrastructure'],
-  category: 'Telehealth',
-  completionDate: new Date(2024, 1, 20) // February 20, 2024
+**Key Links:**
+- Platform: [pangovet.com](https://pangovet.com/)
+- Service: 20-minute video calls with vets
+- Focus: Pet health navigation and consultation
+- Team: From creators of Catster & Dogster
+- Mission: Enhance pet health and welfare through online veterinary access`,
+  thumbnailUrl: pangoVetThumbnail,
+  videoUrl: './videos/PangoVet.mp4',
+  technologies: ['Flutter', 'Video Calling', 'Real-time Communication', 'Veterinary Platform', 'Mobile Health'],
+  category: 'Healthcare Technology',
+  completionDate: new Date(2023, 10, 18) // November 18, 2023
 }),
+
 
 new ProjectModel({
   id: '3',
-  title: 'EE Doctors',
-  shortDescription: 'Revolutionary Swiss telehealth platform providing instant medical consultations',
-  detailedDescription: `**Comprehensive Telehealth Platform**
-A cutting-edge Swiss medical platform revolutionizing healthcare accessibility across Europe:
+  title: 'IndieFilmsRus',
+  shortDescription: 'Independent film streaming platform supporting emerging filmmakers',
+  detailedDescription: `**Independent Film Streaming Platform**
 
-- **Instant Video Consultations** - Connect with licensed Swiss doctors in minutes without appointments or waiting times
-- **Dual Communication System** - Free real-time doctor chat and premium video consultations at CHF 3.80/min (EUR 3.40/min)
-- **Cost-Effective Care** - Maximum consultation cost capped at CHF 76.00 (20 minutes), averaging 12 minutes per session
-- **Professional Medical Network** - 25 experienced general practitioners and emergency physicians with hospital and clinic backgrounds
-- **Digital Prescription System** - Electronic prescriptions sent directly to app, redeemable at any pharmacy
-- **Comprehensive Medical Coverage** - Treating 90% of general medical cases remotely with same quality as in-person visits
-- **Multi-Language Support** - Available in German, French, and Italian for Swiss market
-- **Insurance Integration** - Recognized by Swiss health insurance companies with reimbursement options
-- **Personal Health Hub** - Digital patient records, consultation reports, and treatment history tracking
-- **Emergency Coordination** - Hospital and clinic referrals with coordination services for complex cases
-- **Mobile-First Design** - Native iOS and Android apps with seamless user experience
-- **Enterprise Security** - Hospital-grade data protection and Swiss privacy compliance
-- **Specialized Services** - Travel medicine, nutrition counseling, respiratory conditions, musculoskeletal disorders
-- **Swisscom Integration** - Easypay billing system for simplified payment processing
+Discover and support the next generation of independent filmmakers:
 
-*Built for Swiss healthcare standards with focus on accessibility, quality, and patient data protection.*
+- **Diverse Film Library** - Wide selection of indie films across all genres (drama, comedy, thriller, documentary)
+- **Multi-Platform Access** - Stream on iOS, Android, iPad, Mac, and Apple Vision Pro
+- **Flexible Viewing Options** - Stream instantly, download for offline viewing, rent or purchase films
+- **Filmmaker Support** - Platform dedicated to amplifying voices of emerging creators
+- **Secure Payments** - Integrated payment options for rentals and purchases
+- **Content Range** - From micro shorts to full-length features
+- **Community Focus** - Building a thriving indie film community
+- **Easy Discovery** - User-friendly interface for seamless movie browsing and playback
+- **All Indie, All the Time** - Exclusively independent content not found in mainstream theaters
+- **Creator Spotlight** - Showcasing talented filmmakers who deserve recognition
 
-**Key Medical Specialties:**
-- General Medicine & Emergency Care
-- Respiratory Conditions (Cough, Bronchitis, Colds)
-- Musculoskeletal Disorders (Back, Shoulder, Knee Pain)
-- Urinary Tract Infections
-- Neurological Conditions (Sciatica, Headaches)
-- Nutrition & Weight Management
-- Travel Medicine & Vaccination Consulting
+*Built with Flutter for cross-platform compatibility, supporting independent cinema and meaningful storytelling.*
 
-**Live Platform:** [eedoctors.net](https://www.eedoctors.net/)
-**Mobile Apps:** Available on iOS App Store and Google Play Store
-**Pricing:** CHF 3.80/min (EUR 3.40/min) with 20-minute cap
-**Coverage:** Switzerland, Germany, Austria
-**Average Consultation:** 12 minutes
-**Medical Team:** 25 licensed physicians`,
-  thumbnailUrl: eeDoctorsThumbnail,
-  videoUrl: './videos/eeDoctors.mp4',
-  technologies: ['React Native', 'WebRTC', 'Swiss Payment APIs', 'Medical Compliance', 'Video Streaming', 'Secure Messaging', 'Digital Prescriptions', 'Health Records'],
-  category: 'Telehealth',
-  completionDate: new Date(2024, 0, 10) // January 10, 2024
+**Key Links:**
+- Website: [IndieFilmsrUs(https://indiefilmsrus.com/)
+- Android App: [Android](https://play.google.com/store/apps/details?id=com.lisa.indie_films_r_us&hl=en)
+- iOS App: [IOS](https://apps.apple.com/pk/app/indiefilmsrus/id6739507017)
+- Developer: Indie Films R Us LLC
+- Privacy Policy: https://indiefilmsrus.com/privacy`,
+  thumbnailUrl: indieFilmsRus,
+  videoUrl: './videos/indieapp.mp4',
+  technologies: ['Flutter', 'Streaming', 'Payment Integration', 'Cross-Platform', 'Video Playback'],
+  category: 'Entertainment',
+  completionDate: new Date(2023, 10, 18) // November 18, 2023
 }),
 
+
+   new ProjectModel({
+    id: '4',
+    title: 'Yoyo Apps',
+    shortDescription: 'AI-powered multilingual learning platform with personalized speaking practice and pronunciation feedback',
+    detailedDescription: `**Yoyo Apps - AI-Powered Language Learning Platform**
+
+Revolutionary educational platform connecting students and tutors through AI-driven speaking practice across multiple languages:
+
+• **Multi-Language Support** - English, Spanish, French, German, Mandarin, Japanese, Russian, and Korean language learning
+• **AI-Powered Pronunciation Analysis** - Advanced AI trained on thousands of hours of native speaking for accurate pronunciation, fluency, and intonation assessment
+• **Dual-App Architecture** - Separate apps for students and tutors with seamless integration and communication
+• **Personalized Learning** - AI-driven adaptive learning that provides instant feedback and targeted coaching based on individual progress
+• **Teacher-Led Management** - Comprehensive tools for educators to assign phrases, track student progress, and manage curricula
+• **Automated Reporting** - Monthly progress reports for parents and detailed analytics for teachers
+• **Safe Learning Environment** - Secure, closed platform with no peer-to-peer interaction, voice recording storage, or personal data collection
+• **Evidence-Based Approach** - Combines spaced practice with AI-driven personalization for optimal learning outcomes
+• **Cross-Platform Access** - Available on iOS and Android with seamless synchronization
+
+**Platform Links:**
+• **Website:** [yoyospeak.com](https://yoyospeak.com/)
+• **iOS (Students):** [App Store - Yoyo Speak](https://apps.apple.com/gb/app/yoyo-speak/id6639612813)
+• **iOS (Tutors):** [App Store - Yoyo Tutor](https://apps.apple.com/gb/app/yoyo-tutor/id6639612761)
+• **Android (Students):** [Google Play - Yoyo Speak](https://play.google.com/store/apps/details?id=com.yoyospeak.yoyo)
+• **Android (Tutors):** [Google Play - Yoyo Tutor](https://play.google.com/store/apps/details?id=com.yoyotutor.yoyo)
+
+*Advanced AI language learning platform designed for schools and educational institutions, featuring real-time pronunciation feedback and comprehensive progress tracking across 8 major languages.*`,
+    thumbnailUrl: yoyo,
+    videoUrl: './videos/yoyo.mp4',
+    technologies: ['React Native', 'AI/ML', 'Speech Recognition', 'Natural Language Processing', 'Cloud Computing', 'Real-time Analytics', 'Push Notifications', 'Secure Authentication'],
+    category: 'Education',
+    completionDate: new Date(2023, 10, 18) // November 18, 2023
+})
+,
+
+
  new ProjectModel({
-  id: '4',
+  id: '5',
   title: 'Hey Dividend',
   shortDescription: 'AI-powered dividend investing and passive income mobile platform',
   detailedDescription: `**AI-Powered Dividend Investing Platform**
@@ -202,7 +219,7 @@ Revolutionary mobile application transforming dividend investing through artific
 }),
 
  new ProjectModel({
-  id: '5',
+  id: '6',
   title: 'Papa Score',
   shortDescription: 'Comprehensive football streaming app with live matches, insights, and news',
   detailedDescription: `**Football Streaming & Sports Analytics Platform**
@@ -250,7 +267,7 @@ Ultimate football companion app delivering live streaming and comprehensive matc
 }),
     
 new ProjectModel({
-  id: '6',
+  id: '7',
   title: 'Hubavet - Veterinary Telemedicine Platform',
   shortDescription: 'Revolutionary telehealth platform connecting veterinarians with pet owners remotely',
   detailedDescription: `**Veterinary Telemedicine Platform**
@@ -279,41 +296,55 @@ Transform veterinary care with modern telehealth solutions:
   completionDate: new Date(2023, 10, 18)
 }),
     
-new ProjectModel({
-  id: '7',
-  title: 'IndieFilmsRus',
-  shortDescription: 'Independent film streaming platform supporting emerging filmmakers',
-  detailedDescription: `**Independent Film Streaming Platform**
 
-Discover and support the next generation of independent filmmakers:
-
-- **Diverse Film Library** - Wide selection of indie films across all genres (drama, comedy, thriller, documentary)
-- **Multi-Platform Access** - Stream on iOS, Android, iPad, Mac, and Apple Vision Pro
-- **Flexible Viewing Options** - Stream instantly, download for offline viewing, rent or purchase films
-- **Filmmaker Support** - Platform dedicated to amplifying voices of emerging creators
-- **Secure Payments** - Integrated payment options for rentals and purchases
-- **Content Range** - From micro shorts to full-length features
-- **Community Focus** - Building a thriving indie film community
-- **Easy Discovery** - User-friendly interface for seamless movie browsing and playback
-- **All Indie, All the Time** - Exclusively independent content not found in mainstream theaters
-- **Creator Spotlight** - Showcasing talented filmmakers who deserve recognition
-
-*Built with Flutter for cross-platform compatibility, supporting independent cinema and meaningful storytelling.*
-
-**Key Links:**
-- Website: [IndieFilmsrUs(https://indiefilmsrus.com/)
-- Android App: [Android](https://play.google.com/store/apps/details?id=com.lisa.indie_films_r_us&hl=en)
-- iOS App: [IOS](https://apps.apple.com/pk/app/indiefilmsrus/id6739507017)
-- Developer: Indie Films R Us LLC
-- Privacy Policy: https://indiefilmsrus.com/privacy`,
-  thumbnailUrl: indieFilmsRus,
-  videoUrl: './videos/indieapp.mp4',
-  technologies: ['Flutter', 'Streaming', 'Payment Integration', 'Cross-Platform', 'Video Playback'],
-  category: 'Entertainment',
-  completionDate: new Date(2023, 10, 18) // November 18, 2023
-}),
 new ProjectModel({
   id: '8',
+  title: 'EE Doctors',
+  shortDescription: 'Revolutionary Swiss telehealth platform providing instant medical consultations',
+  detailedDescription: `**Comprehensive Telehealth Platform**
+A cutting-edge Swiss medical platform revolutionizing healthcare accessibility across Europe:
+
+- **Instant Video Consultations** - Connect with licensed Swiss doctors in minutes without appointments or waiting times
+- **Dual Communication System** - Free real-time doctor chat and premium video consultations at CHF 3.80/min (EUR 3.40/min)
+- **Cost-Effective Care** - Maximum consultation cost capped at CHF 76.00 (20 minutes), averaging 12 minutes per session
+- **Professional Medical Network** - 25 experienced general practitioners and emergency physicians with hospital and clinic backgrounds
+- **Digital Prescription System** - Electronic prescriptions sent directly to app, redeemable at any pharmacy
+- **Comprehensive Medical Coverage** - Treating 90% of general medical cases remotely with same quality as in-person visits
+- **Multi-Language Support** - Available in German, French, and Italian for Swiss market
+- **Insurance Integration** - Recognized by Swiss health insurance companies with reimbursement options
+- **Personal Health Hub** - Digital patient records, consultation reports, and treatment history tracking
+- **Emergency Coordination** - Hospital and clinic referrals with coordination services for complex cases
+- **Mobile-First Design** - Native iOS and Android apps with seamless user experience
+- **Enterprise Security** - Hospital-grade data protection and Swiss privacy compliance
+- **Specialized Services** - Travel medicine, nutrition counseling, respiratory conditions, musculoskeletal disorders
+- **Swisscom Integration** - Easypay billing system for simplified payment processing
+
+*Built for Swiss healthcare standards with focus on accessibility, quality, and patient data protection.*
+
+**Key Medical Specialties:**
+- General Medicine & Emergency Care
+- Respiratory Conditions (Cough, Bronchitis, Colds)
+- Musculoskeletal Disorders (Back, Shoulder, Knee Pain)
+- Urinary Tract Infections
+- Neurological Conditions (Sciatica, Headaches)
+- Nutrition & Weight Management
+- Travel Medicine & Vaccination Consulting
+
+**Live Platform:** [eedoctors.net](https://www.eedoctors.net/)
+**Mobile Apps:** Available on iOS App Store and Google Play Store
+**Pricing:** CHF 3.80/min (EUR 3.40/min) with 20-minute cap
+**Coverage:** Switzerland, Germany, Austria
+**Average Consultation:** 12 minutes
+**Medical Team:** 25 licensed physicians`,
+  thumbnailUrl: eeDoctorsThumbnail,
+  videoUrl: './videos/eeDoctors.mp4',
+  technologies: ['React Native', 'WebRTC', 'Swiss Payment APIs', 'Medical Compliance', 'Video Streaming', 'Secure Messaging', 'Digital Prescriptions', 'Health Records'],
+  category: 'Telehealth',
+  completionDate: new Date(2024, 0, 10) // January 10, 2024
+}),
+
+new ProjectModel({
+  id: '9',
   title: 'Momoyoga App',
   shortDescription: 'Comprehensive yoga teaching and studio management platform',
   detailedDescription: `**Yoga Teaching & Studio Management Platform**
@@ -347,7 +378,7 @@ The complete solution for yoga teachers and studios to organize their practice:
 }),
    
 new ProjectModel({
-  id: '9',
+  id: '10',
   title: 'Nova App',
   shortDescription: 'Frustration-free telemedicine software platform for healthcare providers',
   detailedDescription: `**Telemedicine Software Platform**
@@ -380,42 +411,53 @@ Simple and secure telehealth solution for healthcare providers:
   category: 'Healthcare Technology',
   completionDate: new Date(2023, 10, 18) // November 18, 2023
 }),
-  new ProjectModel({
-  id: '10',
-  title: 'PangoVet App',
-  shortDescription: 'Online veterinary consultation platform connecting pet owners with certified vets',
-  detailedDescription: `**Veterinary Telehealth Platform**
 
-Professional online veterinary consultation service for pet owners:
 
-- **20-Minute Video Calls** - Direct video consultations with licensed veterinary experts
-- **Certified Veterinarians** - Access to qualified veterinary professionals online
-- **Pet Health Navigation** - Expert guidance for various pet health issues and concerns
-- **Affordable Consultation** - Cost-effective alternative to in-person vet visits
-- **Personalized Advice** - Tailored recommendations specific to your pet's needs
-- **Complement Regular Care** - Designed to enhance, not replace, your pet's regular veterinarian
-- **Remote Access** - Reach veterinary expertise from anywhere, especially remote locations
-- **Question & Answer Format** - Ask all your questions and raise concerns about your pet
-- **Educational Focus** - Helping pet owners understand and navigate health issues
-- **No Prescription Services** - Focuses on consultation and advice rather than prescriptions
-- **Convenient Access** - Available when you can't get to a regular vet immediately
-
-*Created by the team behind Catster & Dogster, PangoVet bridges the gap between pet owners and veterinary expertise through accessible online consultations.*
-
-**Key Links:**
-- Platform: [pangovet.com](https://pangovet.com/)
-- Service: 20-minute video calls with vets
-- Focus: Pet health navigation and consultation
-- Team: From creators of Catster & Dogster
-- Mission: Enhance pet health and welfare through online veterinary access`,
-  thumbnailUrl: pangoVetThumbnail,
-  videoUrl: './videos/PangoVet.mp4',
-  technologies: ['Flutter', 'Video Calling', 'Real-time Communication', 'Veterinary Platform', 'Mobile Health'],
-  category: 'Healthcare Technology',
-  completionDate: new Date(2023, 10, 18) // November 18, 2023
-}),
-  new ProjectModel({
+new ProjectModel({
   id: '11',
+  title: 'Dial-a-Vet',
+  shortDescription: 'Revolutionary 24/7 telehealth platform connecting pet owners with licensed veterinarians',
+  detailedDescription: `**Veterinary Telehealth Platform**
+A comprehensive telemedicine solution transforming pet healthcare delivery across Australia and globally:
+
+- **24/7 Veterinary Access** - Connect with licensed Australian veterinarians and veterinary nurses in minutes
+- **Affordable Care Model** - Fixed $49 consultation fee making veterinary care accessible to all pet owners
+- **Video Consultation Platform** - High-quality video calls enabling real-time pet diagnosis and treatment advice
+- **Instant Booking System** - Book appointments in minutes with average wait time of 7-8 minutes
+- **Multi-Platform Accessibility** - Web-based platform accessible from any device, anywhere
+- **Enterprise-Grade Security** - HIPAA compliant and SOC-2 certified software ensuring data protection
+- **Global Expansion** - Successfully expanded to Canada, USA, and UK markets from Australian foundation
+- **High Success Rate** - 90% of pet concerns resolved remotely without in-person visits
+- **Scalable Infrastructure** - Serving over 40,000 pet owners since launch in August 2022
+- **Professional Network** - Licensed veterinary professionals providing expert diagnosis and treatment plans
+- **Emergency Support** - Available when local clinics are closed, providing urgent care guidance
+- **Corporate Solutions** - Employee benefit programs for companies to provide pet care support
+
+*Founded by CEO Josh Fidrmuc, revolutionizing pet care accessibility with cutting-edge telehealth technology and affordable pricing model.*
+
+**Key Achievements:**
+- Over 40,000 registered pet owners
+- 90% consultation success rate
+- 4-star customer satisfaction rating
+- Strategic acquisition of SpeakToAVet.com in 2024
+- Global expansion to 4 countries
+- Average consultation connection time: 7-8 minutes
+
+**Live Platform:** [dialavet.com](https://www.dialavet.com/)
+**Support:** [support@dialavet.com.au](mailto:support@dialavet.com.au)
+**Business Model:** $49 per consultation (previously $25)
+**Coverage:** Australia, Canada, USA, United Kingdom
+
+**Technology Stack:** Web-based video platform, secure payment processing, appointment scheduling system, licensed veterinarian matching algorithm.`,
+  thumbnailUrl: dialavetThumbnail,
+  videoUrl: './videos/dialavet.mp4',
+  technologies: ['React', 'Node.js', 'WebRTC', 'Payment Gateway', 'Video Streaming', 'Telehealth APIs', 'Security Compliance', 'Cloud Infrastructure'],
+  category: 'Telehealth',
+  completionDate: new Date(2024, 1, 20) // February 20, 2024
+}),
+
+  new ProjectModel({
+  id: '12',
   title: 'Pawssum App',
   shortDescription: 'Australia\'s largest mobile veterinary care booking platform',
   detailedDescription: `**Mobile Veterinary Care Platform**
@@ -450,7 +492,7 @@ On-demand veterinary services delivered to your home across Australia:
   completionDate: new Date(2023, 10, 18) // November 18, 2023
 }),
    new ProjectModel({
-    id: '12',
+    id: '13',
     title: 'Vetpass App',
     shortDescription: 'Comprehensive veterinary platform connecting pet owners with vets and AI-powered pet care',
     detailedDescription: `**Vetpass - All-in-One Pet Care Platform**
@@ -480,39 +522,8 @@ The global platform and app for pet owners, veterinarians, pet service providers
     category: 'Healthcare',
     completionDate: new Date(2023, 10, 18) // November 18, 2023
 }),
-   new ProjectModel({
-    id: '13',
-    title: 'Yoyo Apps',
-    shortDescription: 'AI-powered multilingual learning platform with personalized speaking practice and pronunciation feedback',
-    detailedDescription: `**Yoyo Apps - AI-Powered Language Learning Platform**
 
-Revolutionary educational platform connecting students and tutors through AI-driven speaking practice across multiple languages:
 
-• **Multi-Language Support** - English, Spanish, French, German, Mandarin, Japanese, Russian, and Korean language learning
-• **AI-Powered Pronunciation Analysis** - Advanced AI trained on thousands of hours of native speaking for accurate pronunciation, fluency, and intonation assessment
-• **Dual-App Architecture** - Separate apps for students and tutors with seamless integration and communication
-• **Personalized Learning** - AI-driven adaptive learning that provides instant feedback and targeted coaching based on individual progress
-• **Teacher-Led Management** - Comprehensive tools for educators to assign phrases, track student progress, and manage curricula
-• **Automated Reporting** - Monthly progress reports for parents and detailed analytics for teachers
-• **Safe Learning Environment** - Secure, closed platform with no peer-to-peer interaction, voice recording storage, or personal data collection
-• **Evidence-Based Approach** - Combines spaced practice with AI-driven personalization for optimal learning outcomes
-• **Cross-Platform Access** - Available on iOS and Android with seamless synchronization
-
-**Platform Links:**
-• **Website:** [yoyospeak.com](https://yoyospeak.com/)
-• **iOS (Students):** [App Store - Yoyo Speak](https://apps.apple.com/gb/app/yoyo-speak/id6639612813)
-• **iOS (Tutors):** [App Store - Yoyo Tutor](https://apps.apple.com/gb/app/yoyo-tutor/id6639612761)
-• **Android (Students):** [Google Play - Yoyo Speak](https://play.google.com/store/apps/details?id=com.yoyospeak.yoyo)
-• **Android (Tutors):** [Google Play - Yoyo Tutor](https://play.google.com/store/apps/details?id=com.yoyotutor.yoyo)
-
-*Advanced AI language learning platform designed for schools and educational institutions, featuring real-time pronunciation feedback and comprehensive progress tracking across 8 major languages.*`,
-    thumbnailUrl: yoyo,
-    videoUrl: './videos/yoyo.mp4',
-    technologies: ['React Native', 'AI/ML', 'Speech Recognition', 'Natural Language Processing', 'Cloud Computing', 'Real-time Analytics', 'Push Notifications', 'Secure Authentication'],
-    category: 'Education',
-    completionDate: new Date(2023, 10, 18) // November 18, 2023
-})
-  
   
   
   ],
