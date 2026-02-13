@@ -99,7 +99,7 @@ const ContactSection = () => {
   try {
     // Use emailjs.send instead of sendForm for better control
     const result = await emailjs.send(
-      'service_oknc7r5',     // Your service ID
+      'service_8yhy8x4',     // Your service ID (Gmail - reconnected)
       'template_eu23tnu',    // Your template ID
       {
         name: formData.name,
@@ -142,7 +142,7 @@ const ContactSection = () => {
   //   try {
   //     // Send email using EmailJS
   //     const result = await emailjs.sendForm(
-  //       'service_oknc7r5',     // Replace with your EmailJS service ID
+  //       'service_8yhy8x4',     // Replace with your EmailJS service ID
   //       'template_v5qtkxj',    // Replace with your EmailJS template ID 
   //       formRef.current,
   //       'xkCq5zivU2-e_Q9p4'      // Replace with your EmailJS public key
