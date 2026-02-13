@@ -6,14 +6,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 64px;
   background-color: transparent;
-  transition: all 0.3s ease;
+  transition: background-color var(--duration-normal) var(--ease-out);
   z-index: 1000;
 }
 
 .navbarScrolled {
-  background-color: rgba(18, 18, 18, 0.95);
+  background-color: rgba(28, 25, 23, 0.96);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -30,20 +30,16 @@
 
 /* Logo */
 .logo {
-  /* font-family: 'GG Sans Bold', system-ui, -apple-system, sans-serif; */
   font-family: var(--font-primary);
-  font-size: clamp(24px, 3vw, 28px);
-  font-weight: 700;
-  color: #121212;
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-weight: 600;
+  color: var(--color-text);
   cursor: pointer;
-  transition: all 0.3s ease;
-  animation: fadeInUp 0.8s ease forwards;
-  opacity: 0;
-  transform: translateY(20px);
+  transition: color var(--duration-normal) var(--ease-out);
 }
 
 .logoScrolled {
-  color: #ffffff;
+  color: var(--color-surface);
 }
 
 /* Desktop Navigation */
@@ -72,32 +68,32 @@
 
 .navItemText {
   font-family: var(--font-primary);
-  font-size: clamp(13px, 1.2vw, 15px);
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
   font-weight: 500;
-  color: #666666;
-  transition: all 0.3s ease;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-normal) var(--ease-out);
   text-align: center;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .navItemScrolled {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .navItemTextActive {
   font-weight: 600;
-  color: #121212;
+  color: var(--color-text);
 }
 
 .navbarScrolled .navItemTextActive {
-  color: #ffffff;
+  color: var(--color-surface);
 }
 
 /* Underline Indicator */
 .underlineIndicator {
   height: 2px;
   width: 0;
-  background-color: #121212;
+  background-color: var(--color-text);
   border-radius: 1px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -107,7 +103,7 @@
 }
 
 .underlineIndicatorScrolled {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
 }
 
 /* Mobile Menu */
@@ -125,14 +121,14 @@
 .hamburgerLine {
   position: absolute;
   height: 2px;
-  width: 30px;
-  background-color: #121212;
+  width: 26px;
+  background-color: var(--color-text);
   border-radius: 1px;
-  transition: all 0.3s ease;
+  transition: background-color var(--duration-normal) var(--ease-out);
 }
 
 .hamburgerScrolled {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
 }
 
 .hamburgerLine1 {
@@ -180,11 +176,11 @@
   bottom: 0;
   width: 75vw;
   max-width: 300px;
-  background-color: #121212;
+  background-color: var(--color-accent-badge);
   transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s var(--ease-out);
   z-index: 1001;
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .mobileDrawerOpen {
@@ -207,15 +203,14 @@
 }
 
 .drawerTitle {
-  /* font-family: 'GG Sans Bold', system-ui, -apple-system, sans-serif; */
   font-family: var(--font-primary);
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-surface);
 }
 
 .closeButton {
-  color: #ffffff;
+  color: var(--color-surface);
   font-size: 24px;
   cursor: pointer;
   padding: 4px;

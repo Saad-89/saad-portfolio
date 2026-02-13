@@ -1,131 +1,96 @@
-/* Footer.module.css */
+/* Footer – minimal, professional */
+
 .footer {
-  background: #000000;
-  color: #ffffff;
-  padding: 40px 0 20px;
-  position: relative;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-accent-badge);
+  color: var(--color-surface);
+  padding: clamp(1.5rem, 3vw, 2rem) var(--section-padding-x);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .footerContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 1.25rem;
 }
 
-/* Brand Section */
 .brand h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 0 5px 0;
-  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+  color: var(--color-surface);
 }
 
 .brand p {
-  font-size: 0.9rem;
-  color: #808080;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.65);
   margin: 0;
 }
 
-/* Back to Top */
-.backToTop {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .backToTopButton {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 2px solid #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   background: transparent;
-  color: #ffffff;
+  color: var(--color-surface);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
 }
 
 .backToTopButton:hover {
-  background: #ffffff;
-  color: #000000;
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .backToTopButton i {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
-/* Bottom Bar */
 .bottomBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.copyright p {
+.copyright p,
+.location p {
   margin: 0;
-  font-size: 0.85rem;
-  color: #808080;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .location {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.location p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #808080;
+  gap: 0.35rem;
 }
 
 .location i {
-  font-size: 0.8rem;
-  color: #ffffff;
-  margin-right: 8px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .footer {
-    padding: 30px 0 15px;
-  }
-  
+@media (max-width: 640px) {
   .footerContent {
     flex-direction: column;
-    gap: 25px;
+    gap: 1rem;
     text-align: center;
   }
-  
-  .brand h3 {
-    font-size: 1.3rem;
-  }
-  
-  .backToTopButton {
-    width: 40px;
-    height: 40px;
-  }
-  
   .bottomBar {
     flex-direction: column;
-    gap: 10px;
     text-align: center;
-  }
-  
-  .copyright p,
-  .location p {
-    font-size: 0.8rem;
   }
 }

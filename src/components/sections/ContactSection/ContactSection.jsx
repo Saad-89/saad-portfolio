@@ -23,27 +23,15 @@ const ContactSection = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!hasAnimated && isInView()) {
-        setHasAnimated(true);
-      }
-    };
-
-    const isInView = () => {
-      if (!sectionRef.current) return false;
-      
-      const rect = sectionRef.current.getBoundingClientRect();
-      const screenHeight = window.innerHeight;
-      
-      return rect.top < screenHeight * 0.8 && 
-             rect.top > -rect.height * 0.3;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasAnimated]);
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => { if (entries[0]?.isIntersecting) setHasAnimated(true); },
+      { threshold: 0.08, rootMargin: '0px 0px 80px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.unobserve(el);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -111,7 +99,6 @@ const ContactSection = () => {
       'xkCq5zivU2-e_Q9p4'    // Your public key
     );
 
-    console.log('Email sent successfully:', result);
     alert('Message sent successfully!');
     
     // Reset form
@@ -190,23 +177,17 @@ const ContactSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className={`${styles.contactSection} ${hasAnimated ? styles.animated : ''}`}
+      className={`${styles.contactSection} ${hasAnimated ? styles.visible : ''}`}
+      aria-label="Contact"
     >
       <div className={styles.container}>
-        {/* Section Header */}
-        <div className={styles.header}>
-          <div className={styles.decorativeLine}></div>
-          <h2 className={styles.title}>LET'S WORK TOGETHER</h2>
+        <header className={styles.header}>
+          <div className={styles.headerLine} aria-hidden="true" />
+          <h2 className={styles.title}>Get in touch</h2>
           <p className={styles.subtitle}>
-            Have a project in mind? Let's discuss how we can bring your ideas to life. 
-            I'm always open to new opportunities and collaborations.
+            Have a project in mind? I'm open to new opportunities and collaborations.
           </p>
-          <div className={styles.decorativeElements}>
-            <div className={styles.decorator}></div>
-            <div className={styles.dot}></div>
-            <div className={styles.decorator}></div>
-          </div>
-        </div>
+        </header>
 
         {/* Content */}
         <div className={styles.content}>

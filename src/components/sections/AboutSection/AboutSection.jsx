@@ -1,149 +1,69 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './AboutSection.module.css';
-import saadProfile from '../../../assets/images/saad.png'
+import saadProfile from '../../../assets/images/saad.png';
 
-const AboutSection = ({ scrollController }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
+const AboutSection = () => {
+  const [visible, setVisible] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!hasAnimated && isInView()) {
-        setIsVisible(true);
-        setHasAnimated(true);
-      }
-    };
-
-    const scrollElement = window;
-
-    scrollElement.addEventListener('scroll', handleScroll);
-    setTimeout(handleScroll, 100);
-
-    return () => {
-      scrollElement.removeEventListener('scroll', handleScroll);
-    };
-  }, [hasAnimated]);
-
-  const isInView = () => {
-    if (!sectionRef.current) return false;
-
-    const rect = sectionRef.current.getBoundingClientRect();
-    const screenHeight = window.innerHeight;
-
-    return rect.top < screenHeight * 0.7 && rect.top > -rect.height * 0.3;
-  };
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => { if (entries[0]?.isIntersecting) setVisible(true); },
+      { threshold: 0.08, rootMargin: '0px 0px 80px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.unobserve(el);
+  }, []);
 
   const handleSocialClick = (platform) => {
     const links = {
       Twitter: 'https://x.com/saadkashmiri_',
       LinkedIn: 'https://www.linkedin.com/in/muhammadsaad89/',
-      GitHub: 'https://github.com/Saad-89'
+      GitHub: 'https://github.com/Saad-89',
     };
-
-    if (links[platform]) {
-      window.open(links[platform], '_blank');
-    }
+    if (links[platform]) window.open(links[platform], '_blank');
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className={`${styles.aboutSection} ${isVisible ? styles.animate : ''}`}
+      className={`${styles.aboutSection} ${visible ? styles.visible : ''}`}
+      aria-label="About"
     >
       <div className={styles.container}>
-        <div className={styles.content}>
-
-          {/* Desktop Layout */}
-          <div className={styles.desktopLayout}>
-            <div className={`${styles.textContent} ${styles.slideFromLeft}`}>
-              <div className={styles.textWrapper}>
-                <div className={styles.sectionLabel}>About Me</div>
-                <h1 className={styles.name}>Saad Yaqoob</h1>
-                              <p className={styles.introduction}>
-                  Hello, I'm Saad Yaqoob.<br />
-                  I'm a senior mobile and web developer who brings digital ideas to life. With expertise in both 
-                  mobile app development and modern web technologies, I create seamless user experiences that work 
-                  beautifully across all platforms.
-                </p>
-                <p className={styles.skillsBrief}>
-                  Over the years, I've successfully built and launched numerous applications on both Google Play Store 
-                  and Apple App Store using Flutter and React Native. My web development skills span modern frameworks 
-                  and technologies, allowing me to create responsive, fast-loading websites that engage users and drive results. 
-                  I believe in writing clean, maintainable code and always stay updated with the latest industry trends 
-                  to deliver cutting-edge solutions.
-                </p>
-                <div className={styles.socialLinks}>
-                  {['Twitter', 'LinkedIn', 'GitHub'].map((platform) => (
-                    <button
-                      key={platform}
-                      className={styles.socialLink}
-                      onClick={() => handleSocialClick(platform)}
-                    >
-                      <span className={styles.socialText}>{platform}</span>
-                      <div className={styles.socialUnderline}></div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className={`${styles.imageContent} ${styles.slideFromRight}`}>
-              <div className={styles.imageWrapper}>
-                <img 
-                  src={saadProfile} 
-                  alt="Saad Yaqoob - Senior Mobile and Web Developer" 
-                  className={styles.profileImage}
-                />
-              </div>
+        <div className={`${styles.content} ${styles.textFirst}`}>
+          <div className={styles.textContent}>
+            <div className={styles.sectionLabel}>About Me</div>
+            <h2 className={styles.name}>Saad Yaqoob</h2>
+            <p className={styles.introduction}>
+              I'm a senior mobile and web developer. I build apps and websites with Flutter, React, and modern stacks—focused on clean code and great UX across platforms.
+            </p>
+            <p className={styles.skillsBrief}>
+              I've shipped apps to Google Play and the App Store and built responsive web products. I stay current with industry trends to deliver solid, maintainable solutions.
+            </p>
+            <div className={styles.socialLinks}>
+              {['Twitter', 'LinkedIn', 'GitHub'].map((platform) => (
+                <button
+                  key={platform}
+                  type="button"
+                  className={styles.socialLink}
+                  onClick={() => handleSocialClick(platform)}
+                >
+                  {platform}
+                </button>
+              ))}
             </div>
           </div>
-
-          {/* Mobile Layout */}
-          <div className={styles.mobileLayout}>
-            <div className={`${styles.imageContent} ${styles.slideFromRight}`}>
-              <div className={styles.imageWrapper}>
-                <img 
-                  src={saadProfile} 
-                  alt="Saad Yaqoob - Senior Mobile and Web Developer" 
-                  className={styles.profileImage}
-                />
-              </div>
-            </div>
-
-            <div className={`${styles.textContent} ${styles.slideFromLeft}`}>
-              <div className={styles.textWrapper}>
-                <div className={styles.sectionLabel}>About Me</div>
-                <h1 className={styles.name}>Saad Yaqoob</h1>
-                <p className={styles.introduction}>
-                  Hello, I'm Saad Yaqoob.<br />
-                  I'm a senior mobile and web developer who brings digital ideas to life. With expertise in both 
-                  mobile app development and modern web technologies, I create seamless user experiences that work 
-                  beautifully across all platforms.
-                </p>
-                <p className={styles.skillsBrief}>
-                  Over the years, I've successfully built and launched numerous applications on both Google Play Store 
-                  and Apple App Store using Flutter and React Native. My web development skills span modern frameworks 
-                  and technologies, allowing me to create responsive, fast-loading websites that engage users and drive results. 
-                  I believe in writing clean, maintainable code and always stay updated with the latest industry trends 
-                  to deliver cutting-edge solutions.
-                </p>
-                <div className={styles.socialLinks}>
-                  {['Twitter', 'LinkedIn', 'GitHub'].map((platform) => (
-                    <button
-                      key={platform}
-                      className={styles.socialLink}
-                      onClick={() => handleSocialClick(platform)}
-                    >
-                      <span className={styles.socialText}>{platform}</span>
-                      <div className={styles.socialUnderline}></div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className={styles.imageWrapper}>
+            <img
+              src={saadProfile}
+              alt="Saad Yaqoob"
+              className={styles.profileImage}
+              loading="lazy"
+            />
           </div>
-
         </div>
       </div>
     </section>
@@ -151,153 +71,3 @@ const AboutSection = ({ scrollController }) => {
 };
 
 export default AboutSection;
-// import React, { useState, useEffect, useRef } from 'react';
-// import styles from './AboutSection.module.css';
-// import saadProfile from '../../../assets/images/saad.png'
-
-// const AboutSection = ({ scrollController }) => {
-//   const [isVisible, setIsVisible] = useState(false);
-//   const [hasAnimated, setHasAnimated] = useState(false);
-//   const sectionRef = useRef(null);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       if (!hasAnimated && isInView()) {
-//         setIsVisible(true);
-//         setHasAnimated(true);
-//       }
-//     };
-
-//     const scrollElement = window;
-
-//     scrollElement.addE
-//     ventListener('scroll', handleScroll);
-//     setTimeout(handleScroll, 100);
-
-//     return () => {
-//       scrollElement.removeEventListener('scroll', handleScroll);
-//     };
-//   }, [hasAnimated]);
-
-//   const isInView = () => {
-//     if (!sectionRef.current) return false;
-
-//     const rect = sectionRef.current.getBoundingClientRect();
-//     const screenHeight = window.innerHeight;
-
-//     return rect.top < screenHeight * 0.7 && rect.top > -rect.height * 0.3;
-//   };
-
-//   const handleSocialClick = (platform) => {
-//     const links = {
-//       Twitter: 'https://Twitter.com/your-username',
-//       LinkedIn: 'https://linkedin.com/in/your-username',
-//       GitHub: 'https://github.com/your-username'
-//     };
-
-//     if (links[platform]) {
-//       window.open(links[platform], '_blank');
-//     }
-//   };
-
-//   return (
-//     <section 
-//       ref={sectionRef}
-//       className={`${styles.aboutSection} ${isVisible ? styles.animate : ''}`}
-//     >
-//       <div className={styles.container}>
-//         <div className={styles.content}>
-
-//           {/* Desktop Layout */}
-//           <div className={styles.desktopLayout}>
-//             <div className={`${styles.textContent} ${styles.slideFromLeft}`}>
-//               <div className={styles.textWrapper}>
-//                 <div className={styles.sectionLabel}>About Me</div>
-//                 <h1 className={styles.name}>Saad Yaqoob</h1>
-//                               <p className={styles.introduction}>
-//                   Hello, I'm Saad Yaqoob.<br />
-//                   I'm a senior mobile and web developer who brings digital ideas to life. With expertise in both 
-//                   mobile app development and modern web technologies, I create seamless user experiences that work 
-//                   beautifully across all platforms.
-//                 </p>
-//                 <p className={styles.skillsBrief}>
-//                   Over the years, I've successfully built and launched numerous applications on both Google Play Store 
-//                   and Apple App Store using Flutter and React Native. My web development skills span modern frameworks 
-//                   and technologies, allowing me to create responsive, fast-loading websites that engage users and drive results. 
-//                   I believe in writing clean, maintainable code and always stay updated with the latest industry trends 
-//                   to deliver cutting-edge solutions.
-//                 </p>
-//                 <div className={styles.socialLinks}>
-//                   {['Twitter', 'LinkedIn', 'GitHub'].map((platform) => (
-//                     <button
-//                       key={platform}
-//                       className={styles.socialLink}
-//                       onClick={() => handleSocialClick(platform)}
-//                     >
-//                       <span className={styles.socialText}>{platform}</span>
-//                       <div className={styles.socialUnderline}></div>
-//                     </button>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-
-//             <div className={`${styles.imageContent} ${styles.slideFromRight}`}>
-//               <div className={styles.imageWrapper}>
-//                 <div className={styles.imagePlaceholder}>
-//                   <svg className={styles.personIcon} viewBox="0 0 24 24" fill="currentColor">
-//                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-//                   </svg>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Mobile Layout */}
-//           <div className={styles.mobileLayout}>
-//             <div className={`${styles.imageContent} ${styles.slideFromRight}`}>
-//               <div className={styles.imageWrapper}>
-//                 <div className={styles.imagePlaceholder}>
-//                   <svg className={styles.personIcon} viewBox="0 0 24 24" fill="currentColor">
-//                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-//                   </svg>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <div className={`${styles.textContent} ${styles.slideFromLeft}`}>
-//               <div className={styles.textWrapper}>
-//                 <div className={styles.sectionLabel}>About Me</div>
-//                 <h1 className={styles.name}>Muhammad<br />Ahsan</h1>
-//                 <p className={styles.introduction}>
-//                   Hello, I'm Muhammad Ahsan.<br />
-//                   I'm a Flutter developer passionate about creating beautiful cross-platform mobile experiences. 
-//                   I specialize in building high-performance apps that work seamlessly on both iOS and Android.
-//                 </p>
-//                 <p className={styles.skillsBrief}>
-//                   My expertise includes Flutter, Dart, Firebase, REST APIs, and state management solutions like Provider and Bloc. 
-//                   I've worked with clients ranging from startups to established companies, delivering robust mobile solutions.
-//                 </p>
-//                 <div className={styles.socialLinks}>
-//                   {['Twitter', 'LinkedIn', 'GitHub'].map((platform) => (
-//                     <button
-//                       key={platform}
-//                       className={styles.socialLink}
-//                       onClick={() => handleSocialClick(platform)}
-//                     >
-//                       <span className={styles.socialText}>{platform}</span>
-//                       <div className={styles.socialUnderline}></div>
-//                     </button>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default AboutSection;

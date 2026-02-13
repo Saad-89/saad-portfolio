@@ -1,78 +1,63 @@
-:root {
-  --primary-black: #000000;
-  --dark-gray: #333333;
-  --light-gray: #666666;
-  --off-white: #fafafa;
-  --primary-font: 'GGSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --mobile-breakpoint: 768px;
-  --padding-small: 8px;
-  --padding-medium: 16px;
-  --padding-large: 24px;
-  --padding-xl: 32px;
-  --padding-xxl: 48px;
-}
+/* Hero – compact, professional */
 
 .heroSection {
   width: 100%;
-  height: var(--screen-height);
-  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--color-bg);
+  padding: 5rem var(--section-padding-x) 4rem;
+  position: relative;
   overflow: hidden;
-  padding-top: 80px;
 }
 
 .animatedBackground {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   pointer-events: none;
 }
 
 .glowElement {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, rgba(128,128,128,0.02) 50%, transparent 100%);
-  animation: float 3s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(28, 25, 23, 0.04) 0%, transparent 70%);
+  animation: heroFloat 8s ease-in-out infinite;
 }
 
 .glowPrimary {
-  top: 15%;
-  right: 10%;
-  width: 220px;
-  height: 220px;
+  top: 12%;
+  right: 8%;
+  width: 180px;
+  height: 180px;
 }
 
 .glowSecondary {
   bottom: 15%;
   left: 10%;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  background: linear-gradient(45deg, rgba(0,0,0,0.04) 0%, rgba(128,128,128,0.02) 100%);
-  animation: float 3s ease-in-out infinite reverse;
+  width: 120px;
+  height: 120px;
+  animation-delay: -3s;
 }
 
-@keyframes float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(10px, -8px); }
+@keyframes heroFloat {
+  0%, 100% { transform: translate(0, 0); opacity: 0.6; }
+  50% { transform: translate(8px, -6px); opacity: 1; }
 }
 
 .contentContainer {
   width: 100%;
-  max-width: 800px;
-  padding: 0 40px;
+  max-width: 640px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .content > * {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(14px);
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
 }
 
 .content > *.visible {
@@ -80,180 +65,98 @@
   transform: translateY(0);
 }
 
-.greeting {
-  margin-bottom: 12px;
-  transition-delay: 0s;
-}
+.greeting { transition-delay: 0ms; margin-bottom: 0.75rem; }
+.name { transition-delay: 80ms; }
+.title { transition-delay: 160ms; margin-bottom: 1rem; }
+.quote { transition-delay: 240ms; margin-bottom: 1.5rem; }
+.ctaContainer { transition-delay: 320ms; }
 
 .greetingBadge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(128, 128, 128, 0.2);
-  border-radius: 25px;
-  font-size: 16px;
-  font-family: var(--primary-font);
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: #212121;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  color: var(--color-text-secondary);
 }
 
 .statusDot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: #22c55e;
   border-radius: 50%;
 }
 
 .name {
-  font-size: 64px;
-  font-weight: 800;
-  font-family: var(--primary-font);
-  background: linear-gradient(135deg, #000000, #404040);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -2px;
-  line-height: 1;
-  margin: 0 0 8px 0;
-  transition-delay: 0.15s;
-}
-
-.title {
-  margin-bottom: 32px;
-  font-family: var(--primary-font);
-  transition-delay: 0.3s;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
 }
 
 .titleBadge {
   display: inline-block;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-  border: 1px solid #d1d5db;
-  border-radius: 30px;
-  font-size: 26px;
-  font-family: var(--primary-font);
+  padding: 0.4rem 1rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: #374151;
-  letter-spacing: 0.5px;
-}
-
-.quote {
-  margin-bottom: 48px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  transition-delay: 0.45s;
+  color: var(--color-text-secondary);
 }
 
 .quoteText {
-  font-size: 20px;
-  font-family: var(--primary-font);
+  font-size: 0.9375rem;
   font-weight: 400;
-  color: rgba(33, 33, 33, 0.9);
-  letter-spacing: 0.3px;
+  color: var(--color-text-secondary);
   line-height: 1.6;
-}
-
-.ctaContainer {
-  transition-delay: 0.6s;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .ctaButton {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 18px 36px;
-  background: linear-gradient(135deg, #000000, #404040);
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background: var(--color-accent-badge);
   border: none;
-  border-radius: 35px;
-  color: white;
-  font-size: 18px;
-  font-family: var(--primary-font);
+  border-radius: 999px;
+  color: var(--color-surface);
+  font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  box-shadow: var(--shadow-sm);
 }
 
 .ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .ctaIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transition: transform 0.3s ease;
 }
 
-.ctaButton:hover .ctaIcon {
-  transform: translateX(2px);
-}
-
-/* Mobile Styles */
 @media (max-width: 767px) {
   .heroSection {
-    padding-top: 60px;
+    padding-top: 4.5rem;
   }
-  
-  .contentContainer {
-    padding: 0 20px;
-    max-width: 90%;
-  }
-  
-  .greetingBadge {
-    font-size: 14px;
-  }
-  
-  .name {
-    font-size: 42px;
-    font-family: var(--primary-font);
-  }
-  
-  .titleBadge {
-    font-size: 18px;
-    font-family: var(--primary-font);
-    padding: 8px 16px;
-  }
-  
-  .quoteText {
-    font-size: 16px;
-    font-family: var(--primary-font);
-  }
-  
-  .ctaButton {
-    padding: 14px 28px;
-    font-size: 16px;
-  }
-  
-  .glowPrimary,
-  .glowSecondary {
-    width: 150px;
-    height: 150px;
-  }
+  .name { font-size: clamp(1.875rem, 8vw, 2.5rem); }
+  .quoteText { font-size: 0.875rem; }
 }
 
-/* Tablet Styles */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .name {
-    font-size: 52px;
-  }
-  
-  .titleBadge {
-    font-size: 22px;
-  }
-  
-  .quoteText {
-    font-size: 18px;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .content > * { transition: none; }
+  .glowElement { animation: none; }
 }
