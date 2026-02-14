@@ -38,10 +38,10 @@ const AboutSection = () => {
             <div className={styles.sectionLabel}>About Me</div>
             <h2 className={styles.name}>Saad Yaqoob</h2>
             <p className={styles.introduction}>
-              I'm a senior mobile and web developer. I build apps and websites with Flutter, React, and modern stacks—focused on clean code and great UX across platforms.
+              I’m a mobile and web developer focused on building practical, high-quality applications using Flutter, React, and modern development stacks. I prioritize clean code, strong performance, and user-friendly experiences across platforms.
             </p>
             <p className={styles.skillsBrief}>
-              I've shipped apps to Google Play and the App Store and built responsive web products. I stay current with industry trends to deliver solid, maintainable solutions.
+              I’ve worked on apps published on Google Play and the App Store, along with responsive web products for different use cases. I stay updated with current technologies to ensure the solutions I build are reliable, maintainable, and built to last.
             </p>
             <div className={styles.socialLinks}>
               {['Twitter', 'LinkedIn', 'GitHub'].map((platform) => (

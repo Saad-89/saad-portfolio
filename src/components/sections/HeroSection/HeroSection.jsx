@@ -43,7 +43,7 @@ const HeroSection = ({ contactRef, scrollController }) => {
           </div>
           <div className={`${styles.quote} ${animationPhase >= 4 ? styles.visible : ''}`}>
             <span className={styles.quoteText}>
-              Building mobile apps and modern web experiences that work beautifully across all platforms.
+              Building reliable mobile apps and modern web experiences for real business needs.
             </span>
           </div>
           <div className={`${styles.ctaContainer} ${animationPhase >= 5 ? styles.visible : ''}`}>

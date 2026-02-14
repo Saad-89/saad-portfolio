@@ -125,13 +125,22 @@ const skillsData = {
       logoPath: "./techIcons/Figma.png",
       description: "Collaborative design and prototyping tool",
     },
-    // {
-    //   name: "Adobe XD",
-    //   category: "Design & Prototyping",
-    //   proficiency: 0.65,
-    //   logoPath: "./techIcons/AdobeXD.png",
-    //   description: "UI/UX design and prototyping tool",
-    // },
+
+    // WordPress & CMS
+    {
+      name: "WordPress",
+      category: "WordPress & CMS",
+      proficiency: 0.85,
+      logoPath: "./techIcons/WordPress.svg",
+      description: "WordPress CMS development and customization",
+    },
+    {
+      name: "Custom Themes",
+      category: "WordPress & CMS",
+      proficiency: 0.85,
+      logoPath: "./techIcons/WordPress.svg",
+      description: "Custom WordPress theme development from scratch",
+    },
 
     // Version Control & Collaboration
     {
