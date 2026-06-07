@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './ProjectsSection.module.css';
 import { portfolioData } from '../../../data/repositories/portfolioData.js';
-import ProjectVideoDialog from '../../dialogs/ProjectVideoDialog/ProjectVideoDialog.jsx';
 
-const INITIAL_VISIBLE = 6; // 2 rows of 3 (desktop) or 3 rows of 2 (tablet)
+const INITIAL_VISIBLE = 6;
 
 const ProjectsSection = () => {
   const [visible, setVisible] = useState(false);
   const [visibleCards, setVisibleCards] = useState(new Set());
   const [expanded, setExpanded] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
   const sectionRef = useRef(null);
 
   const projects = portfolioData?.projects ?? [];
@@ -22,7 +20,7 @@ const ProjectsSection = () => {
     if (!el) return;
     const observer = new IntersectionObserver(
       (entries) => { if (entries[0]?.isIntersecting) setVisible(true); },
-      { threshold: 0.08, rootMargin: '0px 0px 80px 0px' }
+      { threshold: 0.06, rootMargin: '0px 0px 80px 0px' }
     );
     observer.observe(el);
     return () => observer.unobserve(el);
@@ -31,61 +29,37 @@ const ProjectsSection = () => {
   useEffect(() => {
     if (!visible || !displayedProjects.length) return;
     const timeouts = displayedProjects.map((_, i) =>
-      setTimeout(() => setVisibleCards((prev) => new Set(prev).add(i)), 50 + i * 60)
+      setTimeout(() => setVisibleCards((prev) => new Set(prev).add(i)), 40 + i * 55)
     );
     return () => timeouts.forEach(clearTimeout);
   }, [visible, displayedProjects.length]);
-
-  const openDialog = (project) => {
-    setSelectedProject(project);
-    setIsDialogOpen(true);
-  };
-
-  const closeDialog = () => {
-    setIsDialogOpen(false);
-    setSelectedProject(null);
-  };
-
-  const firstLine = (text) => {
-    if (!text || typeof text !== 'string') return '';
-    return text.replace(/\*\*/g, '').split('\n')[0].trim();
-  };
-
-  if (!projects.length) {
-    return (
-      <section ref={sectionRef} className={styles.section} aria-label="Projects">
-        <div className={styles.container}>
-          <header className={styles.header}>
-            <div className={styles.headerLine} />
-            <h2 className={styles.title}>Projects</h2>
-            <p className={styles.subtitle}>No projects to show.</p>
-          </header>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section
       ref={sectionRef}
       className={`${styles.section} ${visible ? styles.visible : ''}`}
-      aria-label="Projects"
+      aria-label="Selected work"
     >
       <div className={styles.container}>
         <header className={styles.header}>
-          <div className={styles.headerLine} aria-hidden="true" />
-          <h2 className={styles.title}>Projects</h2>
-          <p className={styles.subtitle}>Selected work</p>
+          <span className={styles.eyebrow}>02 — Selected work</span>
+          <h2 className={styles.title}>
+            Real products, built for real businesses.
+          </h2>
+          <p className={styles.subtitle}>
+            Each one opens as a full case study — the problem it solved, how I approached it, and
+            what I delivered. All of them are live and in use today.
+          </p>
         </header>
 
         <div className={styles.grid}>
           {displayedProjects.map((project, index) => (
-            <button
+            <Link
               key={project.id}
-              type="button"
+              to={`/work/${project.slug}`}
               className={`${styles.card} ${visibleCards.has(index) ? styles.visible : ''}`}
-              style={{ transitionDelay: `${50 + index * 60}ms` }}
-              onClick={() => openDialog(project)}
+              style={{ transitionDelay: `${40 + index * 55}ms` }}
+              aria-label={`Read the ${project.title} case study`}
             >
               <div className={styles.thumbWrap}>
                 <img
@@ -93,22 +67,24 @@ const ProjectsSection = () => {
                   alt=""
                   className={styles.thumb}
                   loading="lazy"
-                  onError={(e) => { e.target.style.backgroundColor = 'var(--color-bg-alt)'; }}
+                  onError={(e) => { e.target.style.opacity = '0'; }}
                 />
-                <div className={styles.overlay} />
-                <span className={styles.categoryBadge}>{project.category}</span>
-                {project.videoUrl && <div className={styles.playIcon} aria-hidden="true">▶</div>}
               </div>
               <div className={styles.cardBody}>
-                <h3 className={styles.cardTitle}>{project.title}</h3>
-                <p className={styles.cardDesc}>{firstLine(project.detailedDescription)}</p>
-                <div className={styles.techRow}>
-                  {(project.technologies || []).slice(0, 4).map((tech, i) => (
-                    <span key={i} className={styles.techBadge}>{tech}</span>
-                  ))}
+                <div className={styles.cardMeta}>
+                  <span className={styles.cardCategory}>{project.category}</span>
+                  {project.year && <span className={styles.cardYear}>{project.year}</span>}
                 </div>
+                <h3 className={styles.cardTitle}>{project.title}</h3>
+                <p className={styles.cardDesc}>{project.tagline}</p>
+                <span className={styles.readMore}>
+                  Read case study
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
               </div>
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -120,15 +96,11 @@ const ProjectsSection = () => {
               onClick={() => setExpanded((e) => !e)}
               aria-expanded={expanded}
             >
-              {expanded ? 'Show less' : 'See more'}
+              {expanded ? 'Show fewer' : `View all ${projects.length} projects`}
             </button>
           </div>
         )}
       </div>
-
-      {isDialogOpen && selectedProject && (
-        <ProjectVideoDialog project={selectedProject} onClose={closeDialog} />
-      )}
     </section>
   );
 };

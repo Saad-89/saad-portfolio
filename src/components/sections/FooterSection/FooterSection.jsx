@@ -19,7 +19,7 @@ const Footer = () => {
           {/* Left Side - Brand */}
           <div className={styles.brand}>
             <h3>Saad Yaqoob</h3>
-            <p>Full Stack Developer</p>
+            <p>Software Engineer</p>
           </div>
 
           {/* Right Side - Back to Top */}

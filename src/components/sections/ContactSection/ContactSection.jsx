@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import styles from './ContactSection.module.css';
+import Toast from '../../common/Toast/Toast.jsx';
 
 const ContactSection = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -12,6 +13,7 @@ const ContactSection = () => {
     message: ''
   });
   const [formErrors, setFormErrors] = useState({});
+  const [toast, setToast] = useState(null);
 
   const sectionRef = useRef(null);
   const formRef = useRef();
@@ -99,8 +101,11 @@ const ContactSection = () => {
       'xkCq5zivU2-e_Q9p4'    // Your public key
     );
 
-    alert('Message sent successfully!');
-    
+    setToast({
+      type: 'success',
+      message: "Thanks! Your message is on its way — I'll get back to you within 24 hours.",
+    });
+
     // Reset form
     setFormData({
       name: '',
@@ -108,12 +113,15 @@ const ContactSection = () => {
       subject: '',
       message: ''
     });
-    
+
   } catch (error) {
     console.error('Email sending failed:', error);
     console.error('Error status:', error.status);
     console.error('Error text:', error.text);
-    alert(`Failed to send message: ${error.text || 'Please try again'}`);
+    setToast({
+      type: 'error',
+      message: 'Couldn\'t send your message. Please email me directly at saadyaqoob595@gmail.com.',
+    });
   } finally {
     setIsSubmitting(false);
   }
@@ -182,10 +190,12 @@ const ContactSection = () => {
     >
       <div className={styles.container}>
         <header className={styles.header}>
-          <div className={styles.headerLine} aria-hidden="true" />
-          <h2 className={styles.title}>Get in touch</h2>
+          <span className={styles.eyebrow}>05 — Contact</span>
+          <h2 className={styles.title}>Let's grow your business</h2>
           <p className={styles.subtitle}>
-            Have a project in mind? I'm open to new opportunities and collaborations.
+            Tell me what you're trying to achieve — more customers, a product to launch, or hours
+            back in your week. I'll reply within 24 hours with honest thoughts and a clear next
+            step. No jargon, no obligation.
           </p>
         </header>
 
@@ -193,10 +203,10 @@ const ContactSection = () => {
         <div className={styles.content}>
           {/* Contact Info */}
           <div className={styles.contactInfo}>
-            <h3>Contact Information</h3>
+            <h3>Contact information</h3>
             <p className={styles.contactDescription}>
-              Feel free to reach out through any of these channels. 
-              I typically respond within 24 hours.
+              Prefer to reach out directly? Use any channel below — no gatekeeping,
+              you'll talk to me, not a sales funnel.
             </p>
 
             <div className={styles.contactItems}>
@@ -375,6 +385,14 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
+
+      {toast && (
+        <Toast
+          type={toast.type}
+          message={toast.message}
+          onClose={() => setToast(null)}
+        />
+      )}
     </section>
   );
 };

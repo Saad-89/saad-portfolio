@@ -1,6 +1,7 @@
-/* Mature, professional color palette – stone/slate neutrals */
+/* Refined light palette with a bold indigo accent */
 :root {
-  --font-primary: 'GGSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -22,10 +23,25 @@
   --color-border: #e7e5e4;
   --color-border-light: #f5f5f4;
 
-  /* Accent – subtle, professional */
-  --color-accent: #44403c;
-  --color-accent-soft: #fafaf9;
-  --color-accent-badge: #292524;
+  /* Accent – refined royal blue */
+  --color-accent: #1f49c7;
+  --color-accent-hover: #1a3da8;
+  --color-accent-strong: #16317f;
+  --color-accent-badge: #1f49c7;
+  --color-accent-soft: #eef3ff;
+  --color-accent-border: #c4d5fb;
+  --color-accent-contrast: #ffffff;
+
+  /* Accent gradients & glow */
+  --gradient-accent: linear-gradient(135deg, #2c5ae0 0%, #1f49c7 100%);
+  --gradient-accent-soft: linear-gradient(135deg, #eef3ff 0%, #f4f7ff 100%);
+  --glow-accent: radial-gradient(circle, rgba(44, 90, 224, 0.14) 0%, transparent 70%);
+  --glow-accent-strong: radial-gradient(circle, rgba(31, 73, 199, 0.2) 0%, transparent 70%);
+
+  /* Dark surface (footer, dark panels) */
+  --color-dark: #16151c;
+  --color-dark-soft: #1f1d29;
+  --color-footer-bg: #16151c;
 
   /* Section backgrounds (alternating for rhythm) */
   --color-section: #fafaf9;
@@ -35,6 +51,7 @@
   --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
   --shadow-md: 0 4px 12px rgba(28, 25, 23, 0.06);
   --shadow-lg: 0 8px 24px rgba(28, 25, 23, 0.08);
+  --shadow-accent: 0 8px 24px rgba(79, 70, 229, 0.22);
 
   /* Transitions */
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
@@ -46,6 +63,6 @@
   --content-max: 1100px;
   --section-padding-y: clamp(2.5rem, 6vw, 4rem);
   --section-padding-x: clamp(1rem, 3vw, 2rem);
-  --card-radius: 10px;
+  --card-radius: 12px;
   --card-padding: 1rem 1.25rem;
 }

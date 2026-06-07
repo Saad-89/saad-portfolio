@@ -53,9 +53,11 @@ const ExperienceSection = () => {
     >
       <div className={styles.container}>
         <header className={styles.header}>
-          <div className={styles.headerLine} aria-hidden="true" />
-          <h2 className={styles.title}>Experience</h2>
-          <p className={styles.subtitle}>Professional journey & milestones</p>
+          <span className={styles.eyebrow}>03 — Experience</span>
+          <h2 className={styles.title}>Five-plus years of building</h2>
+          <p className={styles.subtitle}>
+            From my first dev role to running my own freelance practice — here&apos;s the path.
+          </p>
         </header>
 
         <div className={styles.list}>

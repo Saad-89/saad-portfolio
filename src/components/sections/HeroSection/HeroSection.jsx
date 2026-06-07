@@ -1,62 +1,81 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styles from './HeroSection.module.css';
+import saadPortrait from '../../../assets/images/saad-hero.jpg';
 
-const HeroSection = ({ contactRef, scrollController }) => {
-  const [animationPhase, setAnimationPhase] = useState(0);
+const HeroSection = ({ contactRef, portfolioRef, scrollController }) => {
+  const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setAnimationPhase(1), 80);
-    const t2 = setTimeout(() => setAnimationPhase(2), 180);
-    const t3 = setTimeout(() => setAnimationPhase(3), 280);
-    const t4 = setTimeout(() => setAnimationPhase(4), 380);
-    const t5 = setTimeout(() => setAnimationPhase(5), 480);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5); };
+    const timers = [60, 160, 260, 360, 460, 560].map((d, i) =>
+      setTimeout(() => setPhase(i + 1), d)
+    );
+    return () => timers.forEach(clearTimeout);
   }, []);
 
-  const scrollToContact = useCallback(() => {
-    if (contactRef?.current && scrollController?.current) {
-      const el = contactRef.current;
-      const top = el.getBoundingClientRect().top + window.pageYOffset;
-      scrollController.current.scrollTo({ top: top - 80, behavior: 'smooth' });
-    }
-  }, [contactRef, scrollController]);
+  const scrollTo = useCallback(
+    (ref) => {
+      if (ref?.current) {
+        const top = ref.current.getBoundingClientRect().top + window.pageYOffset;
+        const target = scrollController?.current || window;
+        target.scrollTo({ top: top - 72, behavior: 'smooth' });
+      }
+    },
+    [scrollController]
+  );
 
   return (
-    <section className={styles.heroSection} aria-label="Introduction">
-      <div className={styles.animatedBackground}>
-        <div className={`${styles.glowElement} ${styles.glowPrimary}`} />
-        <div className={`${styles.glowElement} ${styles.glowSecondary}`} />
-      </div>
-      <div className={styles.contentContainer}>
+    <section className={styles.hero} aria-label="Introduction">
+      <div className={styles.inner}>
         <div className={styles.content}>
-          <div className={`${styles.greeting} ${animationPhase >= 1 ? styles.visible : ''}`}>
-            <div className={styles.greetingBadge}>
-              <div className={styles.statusDot} />
-              <span>Hello, I'm</span>
-            </div>
-          </div>
-          <h1 className={`${styles.name} ${animationPhase >= 2 ? styles.visible : ''}`}>
-            Saad Yaqoob
+          <p className={`${styles.kicker} ${phase >= 1 ? styles.in : ''}`}>
+            <span className={styles.dot} aria-hidden="true" />
+            Saad Yaqoob — Software Engineer
+          </p>
+
+          <h1 className={`${styles.headline} ${phase >= 2 ? styles.in : ''}`}>
+            I build software that helps businesses
+            <span className={styles.accent}> grow.</span>
           </h1>
-          <div className={`${styles.title} ${animationPhase >= 3 ? styles.visible : ''}`}>
-            <span className={styles.titleBadge}>Mobile App & Web Developer</span>
-          </div>
-          <div className={`${styles.quote} ${animationPhase >= 4 ? styles.visible : ''}`}>
-            <span className={styles.quoteText}>
-              Building reliable mobile apps and modern web experiences for real business needs.
-            </span>
-          </div>
-          <div className={`${styles.ctaContainer} ${animationPhase >= 5 ? styles.visible : ''}`}>
-            <button
-              className={styles.ctaButton}
-              onClick={scrollToContact}
-              aria-label="Scroll to contact"
-            >
-              <span>Let's Connect</span>
+
+          <p className={`${styles.lead} ${phase >= 3 ? styles.in : ''}`}>
+            For 5+ years I&apos;ve helped startups and companies turn ideas into products their
+            customers love — websites and apps, smart AI tools, and automation that saves teams
+            hours every week. From the first idea to launch, I handle the whole build.
+          </p>
+
+          <div className={`${styles.actions} ${phase >= 4 ? styles.in : ''}`}>
+            <button className={styles.primary} onClick={() => scrollTo(portfolioRef)}>
+              View work
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
+            <button className={styles.ghost} onClick={() => scrollTo(contactRef)}>
+              Get in touch
+            </button>
+          </div>
+
+          <p className={`${styles.meta} ${phase >= 5 ? styles.in : ''}`}>
+            <span>Websites &amp; apps</span><span>AI &amp; automation</span><span>Launch-ready MVPs</span>
+            <span className={styles.metaSep}>·</span>
+            <span>Remote, worldwide</span>
+          </p>
+        </div>
+
+        <div className={`${styles.portraitWrap} ${phase >= 1 ? styles.in : ''}`}>
+          <div className={styles.portraitFrame}>
+            <img
+              src={saadPortrait}
+              alt="Saad Yaqoob"
+              className={styles.portrait}
+              width="440"
+              height="520"
+              fetchPriority="high"
+            />
+          </div>
+          <div className={styles.availability}>
+            <span className={styles.availabilityDot} aria-hidden="true" />
+            <span>Available for new projects</span>
           </div>
         </div>
       </div>

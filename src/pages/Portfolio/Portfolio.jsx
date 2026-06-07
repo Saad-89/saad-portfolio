@@ -41,8 +41,9 @@ const Portfolio = () => {
       {/* Main Content */}
       <main className={styles.mainContent}>
         <section ref={heroRef} className={styles.section}>
-          <HeroSection 
+          <HeroSection
             contactRef={contactRef}
+            portfolioRef={portfolioRef}
             scrollController={scrollControllerRef}
           />
         </section>

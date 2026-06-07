@@ -31,11 +31,17 @@
 /* Logo */
 .logo {
   font-family: var(--font-primary);
-  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
-  font-weight: 600;
+  font-size: clamp(1.0625rem, 2.5vw, 1.1875rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--color-text);
   cursor: pointer;
   transition: color var(--duration-normal) var(--ease-out);
+  white-space: nowrap;
+}
+
+.logoDot {
+  color: var(--color-accent);
 }
 
 .logoScrolled {

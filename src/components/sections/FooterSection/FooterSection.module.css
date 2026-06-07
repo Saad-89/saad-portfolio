@@ -1,7 +1,7 @@
 /* Footer – minimal, professional */
 
 .footer {
-  background: var(--color-accent-badge);
+  background: var(--color-footer-bg);
   color: var(--color-surface);
   padding: clamp(1.5rem, 3vw, 2rem) var(--section-padding-x);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
